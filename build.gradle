@@ -1,0 +1,24 @@
+plugins {
+    id("org.springframework.boot") version "2.6.4" apply false
+    id("io.spring.dependency-management") version "1.0.11.RELEASE" apply false
+    id("org.jetbrains.kotlin.jvm") version "1.6.10" apply false
+    id("org.jetbrains.kotlin.plugin.spring") version "1.6.10" apply false
+}
+
+group = "com.yonatankarp"
+version = "0.0.1-SNAPSHOT"
+
+subprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url = uri("https://packages.confluent.io/maven/") }
+        maven {
+            url = uri("https://maven.pkg.github.com/yonatankarp/spring-boot-app-template")
+            credentials {
+                username = findProperty("gpr.user")?.toString() ?: System.getenv("GITHUB_ACTOR")
+                password = findProperty("gpr.key")?.toString() ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}

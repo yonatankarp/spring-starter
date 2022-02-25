@@ -1,0 +1,15 @@
+FROM adoptopenjdk/openjdk11:alpine-jre
+
+ENV APP_BASE="/home"
+ENV APP_NAME="spring-boot-app-template"
+ENV SERVER_PORT=8181
+
+EXPOSE ${SERVER_PORT}
+
+RUN mkdir -p ${APP_BASE}
+
+COPY ${APP_NAME}/build/libs/${APP_NAME}*.jar ${APP_BASE}/${APP_NAME}.jar
+
+
+ENTRYPOINT java $JAVA_OPTS\
+    -jar ${APP_BASE}/${APP_NAME}.jar

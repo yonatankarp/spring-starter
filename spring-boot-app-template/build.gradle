@@ -1,8 +1,11 @@
 plugins {
+    id("jacoco")
+    id("pmd")
     id("org.springframework.boot")
     id("io.spring.dependency-management")
     id("org.jetbrains.kotlin.jvm")
     id("org.jetbrains.kotlin.plugin.spring")
+    id("com.diffplug.spotless")
 }
 
 jar {
@@ -11,6 +14,12 @@ jar {
 
 bootJar {
     enabled = true
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
 }
 
 dependencies {
@@ -22,6 +31,13 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
+build {
+    finalizedBy spotlessApply
+}
+
 test {
     useJUnitPlatform()
+    finalizedBy spotlessApply
+    finalizedBy jacocoTestReport
+    finalizedBy pmdTest
 }

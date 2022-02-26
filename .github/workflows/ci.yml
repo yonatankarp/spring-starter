@@ -1,0 +1,106 @@
+name: Test Suite
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened, ready_for_review ]
+  pull_request_target:
+    types: [ opened, synchronize, reopened, ready_for_review ]
+
+jobs:
+  ci:
+    name: Test Suite
+    # If the PR is coming from a fork (pull_request_target), ensure it's opened
+    # by "dependabot[bot]". Otherwise, clone it normally.
+    if: |
+      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Install Java
+        uses: actions/setup-java@v2.5.0
+        with:
+          java-version: 11
+          distribution: 'adopt'
+
+      - name: Git Checkout
+        uses: actions/checkout@v2.4.0
+        # Do not trigger a checkout when opening PRs from a fork (helps avoid
+        # "pwnn request". See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target )
+        if: github.event_name != 'pull_request_target'
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Dependabot Checkout
+        uses: actions/checkout@v2.4.0
+        if: github.event_name == 'pull_request_target'
+        with:
+          # Dependabot can only checkout at the HEAD of the PR branch
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Check for Changes
+        uses: dorny/paths-filter@v2.10.2
+        id: changes
+        with:
+          filters: |
+            source_code:
+              - 'spring-boot-app-template/src/**'
+              - 'spring-boot-app-template/Dockerfile'
+              - 'spring-boot-app-template/build.gradle'
+              - 'build.gradle'
+
+      - name: Cache Gradle packages
+        if: steps.changes.outputs.source_code == 'true'
+        uses: actions/cache@v2.1.7
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Gradle Test
+        if: steps.changes.outputs.source_code == 'true'
+        id: tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew assemble test
+
+      - name: Cleanup Gradle Cache
+        # Remove some files from the Gradle cache, so they aren't cached by
+        # GitHub Actions. Restoring these files from a GitHub Actions cache
+        # might cause problems for future builds.
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
+
+  dependabot_auto_merge:
+    if: ${{ github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    needs: ci
+    steps:
+      # If the PR is created by Dependabot run additional steps
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1.2.1
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Approve a Dependabot PR
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' ||
+                steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
+        # Approving the PR and waiting for 5 sec to let GitHub UI to reflect the changes
+        run: gh pr review --approve "$PR_URL" && sleep 5
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.REVIEWER_GITHUB_TOKEN }}
+
+      - name: Enable auto-merge for Dependabot PRs
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' ||
+                steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
+        run: gh pr merge --auto --rebase "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

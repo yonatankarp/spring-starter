@@ -1,0 +1,51 @@
+name: Linting
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened, ready_for_review ]
+  pull_request_target:
+    types: [ opened, synchronize, reopened, ready_for_review ]
+
+jobs:
+  linters:
+    name: Linters
+    # If the PR is coming from a fork (pull_request_target), ensure it's opened by "dependabot[bot]".
+    # Otherwise, clone it normally.
+    if: |
+      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+
+      - name: Git Checkout
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@v2.4.0
+        with:
+          fetch-depth: 0
+
+      - name: Checkout PR
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/checkout@v2.4.0
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Lint Documents
+        uses: avto-dev/markdown-lint@v1.5.0
+        with:
+          config: './config/markdown-lint/rules.json'
+          args: '**/*.md'
+
+      - name: Spotless Check Style
+        if: steps.changes.outputs.source_code == 'true'
+        id: spotless_check_style
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew spotlessCheck
+
+      - name: PMD Static Code Analysis
+        if: steps.changes.outputs.source_code == 'true'
+        id: pmd
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew pmdMain pmdTest

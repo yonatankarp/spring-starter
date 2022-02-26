@@ -1,0 +1,45 @@
+plugins {
+    id("spotless")
+    id("jacoco")
+    id("pmd")
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+spotless {
+    kotlin {
+        target(
+                fileTree(".") {
+                    include("**/*.kt")
+                    exclude(
+                            "**/.gradle/**",
+                            "**/build/generated/**"
+                    )
+                }
+        )
+        // see https://github.com/shyiko/ktlint#standard-rules
+        ktlint()
+        diktat().configFile("$rootProject/config/diktat/diktat-analysis.yml")
+    }
+}
+
+pmd {
+    toolVersion = "6.42.0"
+    sourceSets = [sourceSets.main]
+    reportsDir = file("$project.buildDir/reports/pmd")
+    ruleSets = []
+    ruleSetFiles = files("config/pmd/ruleset.xml")
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}

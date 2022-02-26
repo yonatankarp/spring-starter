@@ -15,7 +15,6 @@ jobs:
       (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
       (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
 
       - name: Git Checkout
@@ -42,10 +41,12 @@ jobs:
               - 'build.gradle'
             docs:
               - README.md
+              - 'docs/**'
 
       - name: Lint Documents
         if: steps.changes.outputs.docs == 'true'
         uses: avto-dev/markdown-lint@v1.5.0
+        continue-on-error: true
         with:
           config: './config/markdown-lint/rules.json'
           args: '**/*.md'
@@ -53,6 +54,7 @@ jobs:
       - name: Spotless Check Style
         if: steps.changes.outputs.source_code == 'true'
         id: spotless_check_style
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew spotlessCheck
@@ -60,6 +62,7 @@ jobs:
       - name: PMD Static Code Analysis
         if: steps.changes.outputs.source_code == 'true'
         id: pmd
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew pmdMain pmdTest

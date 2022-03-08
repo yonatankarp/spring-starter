@@ -24,7 +24,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Git Checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
         # Do not trigger a checkout when opening PRs from a fork (helps avoid
         # "pwnn request". See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target )
         if: github.event_name != 'pull_request_target'
@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 0
 
       - name: Dependabot Checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
         if: github.event_name == 'pull_request_target'
         with:
           # Dependabot can only checkout at the HEAD of the PR branch

@@ -22,7 +22,7 @@ how to deploy the project on a live system.
 
 To run the project you need to install the following:
 
-- JDK 11 or newer
+- JDK 17 or newer
 - Docker
 
 ### Installing
@@ -37,7 +37,22 @@ command:
 Additionally, you can run it via docker by running the following commands:
 
 ```shell
-docker build --file ./spring-boot-app-template/Dockerfile . --tag spring-boot-app-template:local
+./gradlew assmble && docker build \
+  --file ./spring-boot-app-template/Dockerfile . \
+  --tag spring-boot-app-template:local
+```
+
+For Apple M1 processor run the following instead:
+
+```shell
+/gradlew assmble && DOCKER_BUILDKIT=0 docker build \
+  --file "./spring-boot-app-template/Dockerfile" . \
+  --tag spring-boot-app-template:local \
+  --platform linux/amd64
+```
+
+Now you can run the image using the following:
+```shell
 docker run spring-boot-app-template:local
 ```
 

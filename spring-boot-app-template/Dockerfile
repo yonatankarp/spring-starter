@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM eclipse-temurin:17-jre-alpine
 
 ENV APP_BASE="/home"
 ENV APP_NAME="spring-boot-app-template"

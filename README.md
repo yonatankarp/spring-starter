@@ -90,7 +90,7 @@ To read more about the plugins included in this project click
 
 ## Built With
 
-- [OpenJdk 11](https://openjdk.java.net/projects/jdk/11/)
+- [OpenJdk 17](https://openjdk.java.net/projects/jdk/17/)
 - [Kotlin](https://kotlinlang.org/)
 - [SpringBoot](https://spring.io/projects/spring-boot) - The web framework used
 - [Gradle](https://gradle.org/) - Dependency Management

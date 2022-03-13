@@ -10,6 +10,6 @@ RUN mkdir -p ${APP_BASE}
 
 COPY ${APP_NAME}/build/libs/${APP_NAME}*.jar ${APP_BASE}/${APP_NAME}.jar
 
-
+EXPOSE 8080
 ENTRYPOINT java $JAVA_OPTS\
     -jar ${APP_BASE}/${APP_NAME}.jar

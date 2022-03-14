@@ -26,7 +26,7 @@ The template is a working application with a minimal setup. It contains:
 - code quality tools already set up
 - integration with GitHub Actions
 - integration with Dependabot
-- integration with SonarCloud
+- integration with SonarCloudA
 - MIT license and contribution information
 
 ## Setup
@@ -47,7 +47,25 @@ To run the project you need to install the following:
 - JDK 17 or newer
 - Docker
 
-### Installing
+
+### Building the application
+
+The project uses [Gradle](https://gradle.org) as a build tool. It already contains
+`./gradlew` wrapper script, so there's no need to install gradle.
+
+To build the project execute the following command:
+
+```shell
+  ./gradlew build
+```
+
+### Running the application
+
+Create the image of the application by executing the following command:
+
+```shell
+  ./gradlew assemble
+```
 
 You can run this project directly from Gradle by executing the following
 command:
@@ -56,26 +74,52 @@ command:
 ./gradlew bootRun
 ```
 
-Additionally, you can run it via docker by running the following commands:
+Otherwise, you can create docker image:
 
 ```shell
-./gradlew assmble && docker build \
-  --file ./spring-boot-app-template/Dockerfile . \
-  --tag spring-boot-app-template:local
+  docker compose build
 ```
 
 For Apple M1 processor run the following instead:
 
 ```shell
-/gradlew assmble && DOCKER_BUILDKIT=0 docker build \
-  --file "./spring-boot-app-template/Dockerfile" . \
-  --tag spring-boot-app-template:local \
-  --platform linux/amd64
+DOCKER_BUILDKIT=0 docker compose build
 ```
 
-Now you can run the image using the following:
+Run the distribution (created in `spring-boot-app-template/build/install/spring-boot-app-template`
+directory) by executing the following command:
+
 ```shell
-docker run spring-boot-app-template:local
+  docker compose up
+```
+
+This will start the API container exposing the application's port
+(set to `8080` in this template app).
+
+In order to test if the application is up, you can call its health endpoint:
+
+```shell
+  curl http://localhost:8080/health
+```
+
+You should get a response similar to this:
+
+```json
+  {"status":"UP","diskSpace":{"status":"UP","total":249644974080,"free":137188298752,"threshold":10485760}}
+```
+
+### Alternative script to run application
+
+To skip all the setting up and building, just execute the following command:
+
+```shell
+./bin/run-in-docker.sh
+```
+
+For more information:
+
+```shell
+./bin/run-in-docker.sh --help
 ```
 
 ## Running the tests

@@ -25,13 +25,14 @@ The template is a working application with a minimal setup. It contains:
 - docker setup
 - code quality tools already set up
 - integration with GitHub Actions
+- integration with Dependabot
 - integration with SonarCloud
 - MIT license and contribution information
 
 ## Setup
 
 Located in `./bin/init.sh`. Simply run and follow the explanation how to
-execute it. This script will self-destry itself when finished.
+execute it. This script will self-destroy itself when finished.
 
 ## Getting Started
 

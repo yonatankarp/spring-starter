@@ -1,7 +1,7 @@
 # spring-boot-app-template
 
-[![Build](https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/ci.yml/badge.svg)](https://github.com/yonatankarp/spring-boot-template/actions/workflows/ci.yml)
-[![Linters](https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml/badge.svg)](https://github.com/yonatankarp/spring-boot-template/actions/workflows/linting.yml)
+[![Build](https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/ci.yml/badge.svg)](https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/ci.yml)
+[![Linters](https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml/badge.svg)](https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template)

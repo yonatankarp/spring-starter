@@ -52,7 +52,7 @@ jobs:
 
       - name: Cache Gradle packages
         if: steps.changes.outputs.source_code == 'true'
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches

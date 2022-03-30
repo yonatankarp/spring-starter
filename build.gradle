@@ -1,6 +1,8 @@
 plugins {
     id("jacoco")
     id("pmd")
+    id("spring-boot-app-template.java-conventions")
+    id("spring-boot-app-template.code-metrics")
     id("com.diffplug.spotless") version "6.4.0" apply true
     id("org.springframework.boot") version "2.6.5" apply false
     id("io.spring.dependency-management") version "1.0.11.RELEASE" apply false

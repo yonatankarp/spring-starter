@@ -11,4 +11,4 @@ Describe in a few sentences what this PR will change. Link to any issues or PRs 
 # Checklist
 
 - [ ] Documentation is updated
-- [ ] No new tests needed
+- [ ] No new tests are needed

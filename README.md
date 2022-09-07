@@ -22,7 +22,7 @@ The template is a working application with a minimal setup. It contains:
 - application skeleton
 - setup script to prepare project
 - common plugins and libraries
-- docker setup
+- docker & docker-compose setup
 - code quality tools already set up
 - integration with GitHub Actions
 - integration with Dependabot
@@ -94,7 +94,7 @@ directory) by executing the following command:
 ```
 
 This will start the API container exposing the application's port
-(set to `8080` in this template app).
+(set to `8080` in this app).
 
 In order to test if the application is up, you can call its health endpoint:
 
@@ -152,7 +152,7 @@ To check your code without applying any changes you can execute:
 ## Plugins
 
 To read more about the plugins included in this project click
-[here](./docs/plugins.md).
+[here](docs/plugins.md).
 
 ## Built With
 

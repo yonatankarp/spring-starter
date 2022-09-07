@@ -70,6 +70,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew build
 
+      - name: Build Docker Image
+        if: steps.changes.outputs.source_code == 'true'
+        id: container
+        run: |
+          docker build --file ./${{ matrix.service }}/Dockerfile --tag ${{ matrix.service }}:latest .
+
   dependabot_auto_merge:
     if: ${{ github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]' }}
     runs-on: ubuntu-latest

@@ -1,14 +1,16 @@
 FROM eclipse-temurin:17-jre-alpine
 
-ENV APP_BASE="/home"
-ENV APP_NAME="spring-boot-app-template"
-ENV SERVER_PORT=8080
+ENV APP_BASE="/home" \
+    APP_NAME="spring-boot-app-template" \
+    SERVER_PORT="8080"
 
 EXPOSE ${SERVER_PORT}
 
-RUN mkdir -p ${APP_BASE}
+RUN apk update && apk upgrade && apk add curl openssl gcompat bash busybox-extras iputils
+
+RUN mkdir -p ${APP_BASE}/${APP_NAME}
 
 COPY ${APP_NAME}/build/libs/${APP_NAME}*.jar ${APP_BASE}/${APP_NAME}.jar
 
-ENTRYPOINT java $JAVA_OPTS\
+CMD java $JAVA_OPTS \
     -jar ${APP_BASE}/${APP_NAME}.jar

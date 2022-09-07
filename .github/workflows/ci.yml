@@ -1,4 +1,4 @@
-name: Test Suite
+name: ci
 
 on:
   pull_request:
@@ -6,38 +6,50 @@ on:
   pull_request_target:
     types: [ opened, synchronize, reopened, ready_for_review ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   ci:
-    name: Test Suite
-    # If the PR is coming from a fork (pull_request_target), ensure it's opened
-    # by "dependabot[bot]". Otherwise, clone it normally.
-    if: |
-      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
-      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
+    # If the PR is coming from a fork (pull_request_target), ensure it's opened by "dependabot[bot]".
+    # Otherwise, clone it normally.
+    if: github.event_name != 'pull_request_target' || github.actor == 'dependabot[bot]'
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [ spring-boot-app-template ]
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+      pull-requests: write # needed for comment updates
+      security-events: write
     steps:
+
+      - name: Git Checkout
+        if: github.event_name != 'pull_request_target'
+        uses: actions/checkout@v3
+        # Do not trigger a checkout when opening PRs from a fork (helps avoid
+        # "pwnn request". See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target )
+        with:
+          fetch-depth: 0
+
+      - name: Dependabot Checkout
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v3
+        with:
+          # Dependabot can only checkout at the HEAD of the PR branch
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Install Java
         uses: actions/setup-java@v3
         with:
           java-version: 17
-          distribution: 'adopt'
-
-      - name: Git Checkout
-        uses: actions/checkout@v3
-        # Do not trigger a checkout when opening PRs from a fork (helps avoid
-        # "pwnn request". See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target )
-        if: github.event_name != 'pull_request_target'
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
-
-      - name: Dependabot Checkout
-        uses: actions/checkout@v3
-        if: github.event_name == 'pull_request_target'
-        with:
-          # Dependabot can only checkout at the HEAD of the PR branch
-          ref: ${{ github.event.pull_request.head.sha }}
+          distribution: 'temurin'
+          #Instead of manually configure caching of gradle, use an action which is provided. Details here: https://github.com/actions/setup-java
+          cache: gradle
 
       - name: Check for Changes
         uses: dorny/paths-filter@v2.10.2
@@ -45,36 +57,18 @@ jobs:
         with:
           filters: |
             source_code:
-              - 'spring-boot-app-template/src/**'
-              - 'spring-boot-app-template/Dockerfile'
-              - 'spring-boot-app-template/build.gradle'
+              - '.github/workflows/**'
+              - '${{ matrix.service }}/src/**'
+              - '${{ matrix.service }}/Dockerfile'
+              - '${{ matrix.service }}/build.gradle'
               - 'build.gradle'
-
-      - name: Cache Gradle packages
-        if: steps.changes.outputs.source_code == 'true'
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
 
       - name: Gradle Test
         if: steps.changes.outputs.source_code == 'true'
         id: tests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew assemble test
-
-      - name: Cleanup Gradle Cache
-        # Remove some files from the Gradle cache, so they aren't cached by
-        # GitHub Actions. Restoring these files from a GitHub Actions cache
-        # might cause problems for future builds.
-        run: |
-          rm -f ~/.gradle/caches/modules-2/modules-2.lock
-          rm -f ~/.gradle/caches/modules-2/gc.properties
+        run: ./gradlew build
 
   dependabot_auto_merge:
     if: ${{ github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]' }}

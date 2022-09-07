@@ -1,0 +1,27 @@
+name: Update Gradle Wrapper
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  update-gradle-wrapper:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+        with:
+          fetch-depth: 0
+
+      - name: Update Gradle Wrapper
+        # **WARN**: as this action comes from the org without public members,
+        # and it has relatively few "stars", so this specific SHA passed #infosec
+        # review from SumUp. Please do NOT upgrade this version unless it is
+        # incompatible with our build - then we'll have to review the version
+        # diff.
+        uses: gradle-update/update-gradle-wrapper-action@981c551b17dbcf1940b1b4435afdb79babb7c13a
+        with:
+          repo-token: ${{ secrets.GH_ACTIONS_PAT }}

@@ -6,14 +6,16 @@ on:
   pull_request_target:
     types: [ opened, synchronize, reopened, ready_for_review ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   linters:
     name: Linters
     # If the PR is coming from a fork (pull_request_target), ensure it's opened by "dependabot[bot]".
     # Otherwise, clone it normally.
-    if: |
-      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
-      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
+    if: github.event_name != 'pull_request_target' || github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
 
@@ -35,10 +37,9 @@ jobs:
         with:
           filters: |
             source_code:
-              - 'spring-boot-app-template/src/**'
-              - 'spring-boot-app-template/Dockerfile'
-              - 'spring-boot-app-template/build.gradle'
-              - 'build.gradle'
+              - '**/src/**'
+              - '**/Dockerfile'
+              - '**/build.gradle'
             docs:
               - README.md
               - 'docs/**'
@@ -51,14 +52,6 @@ jobs:
           config: './config/markdown-lint/rules.json'
           args: '**/*.md'
 
-      - name: Spotless Check Style
-        if: steps.changes.outputs.source_code == 'true'
-        id: spotless_check_style
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew spotlessCheck
-
       - name: PMD Static Code Analysis
         if: steps.changes.outputs.source_code == 'true'
         id: pmd
@@ -66,3 +59,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew pmdMain pmdTest
+
+      - name: Check Style
+        if: steps.changes.outputs.source_code == 'true'
+        id: spotless
+        continue-on-error: true
+        run: ./gradlew spotlessCheck

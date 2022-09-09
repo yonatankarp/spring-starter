@@ -24,4 +24,4 @@ jobs:
         # diff.
         uses: gradle-update/update-gradle-wrapper-action@981c551b17dbcf1940b1b4435afdb79babb7c13a
         with:
-          repo-token: ${{ secrets.GH_ACTIONS_PAT }}
+          repo-token: ${{ secrets.REVIEWER_GITHUB_TOKEN }}

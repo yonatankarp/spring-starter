@@ -1,13 +1,30 @@
 # spring-boot-app-template
 
-[![Build](https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/ci.yml/badge.svg)](https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/ci.yml)
-[![Linters](https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml/badge.svg)](https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[ci-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/ci.yml/badge.svg
+[ci-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/ci.yml
+[linter-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml/badge.svg
+[linter-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml
+[quality-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=alert_status
+[quality-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
+[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=sqale_rating
+[maintainability-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
+[tech-debt-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=sqale_index
+[tech-debt-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
+[security-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=security_rating
+[security-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
+[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=vulnerabilities
+[vulnerabilities-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
+[license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
+[license-link]: https://opensource.org/licenses/MIT
+
+| **Type**     | **Status**                                                                                                                                                                             |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CI pipelines | [![Build][ci-badge]][ci-state]  [![Build][linter-badge]][linter-state]                                                                                                                 |
+| Maintenance  | [![Quality Gate Status][quality-badge]][quality-state] [![Maintainability Rating][maintainability-badge]][maintainability-state] [![Technical Debt][tech-debt-badge]][tech-debt-state] |
+| Security     | [![Security Rating][security-badge]][security-state] [![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-state]                                                                |
+| License      | [![License: MIT][license-badge]][license-link]                                                                                                                                         |
+
+
 
 ## Purpose
 

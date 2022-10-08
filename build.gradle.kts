@@ -7,8 +7,8 @@ plugins {
     id("com.diffplug.spotless") version "6.11.0" apply true
     id("org.springframework.boot") version "2.7.4" apply false
     id("io.spring.dependency-management") version "1.0.14.RELEASE" apply false
-    id("org.jetbrains.kotlin.jvm") version "1.7.10" apply false
-    id("org.jetbrains.kotlin.plugin.spring") version "1.7.10" apply false
+    kotlin("jvm") version "1.7.10" apply false
+    kotlin("plugin.spring") version "1.7.10" apply false
 }
 
 subprojects {

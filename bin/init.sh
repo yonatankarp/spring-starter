@@ -63,7 +63,7 @@ done
 
 # Replace demo package in all files under ./src
 find ./spring-boot-app-template/src -type f -print0 | xargs -0 perl -i -pe "s/karp.springbootapptemplate/karp.$package/g"
-perl -i -pe "s/karp.spring-boot-app-template/karp.$package/g" build.gradle
+perl -i -pe "s/karp.spring-boot-app-template/karp.$package/g" build.gradle.kts
 
 # Rename directory to provided package name
 

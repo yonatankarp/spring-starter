@@ -39,7 +39,7 @@ jobs:
             source_code:
               - '**/src/**'
               - '**/Dockerfile'
-              - '**/build.gradle'
+              - '**/build.gradle.kts'
             docs:
               - README.md
               - 'docs/**'

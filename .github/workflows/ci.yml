@@ -62,8 +62,8 @@ jobs:
               - '.github/workflows/**'
               - '${{ matrix.service }}/src/**'
               - '${{ matrix.service }}/Dockerfile'
-              - '${{ matrix.service }}/build.gradle'
-              - 'build.gradle'
+              - '${{ matrix.service }}/build.gradle.kts'
+              - 'build.gradle.kts'
 
       - name: Gradle Test
         if: steps.changes.outputs.source_code == 'true'

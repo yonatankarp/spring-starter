@@ -29,6 +29,7 @@ declare -a files_with_slug=(
   "settings.gradle"
   "README.md"
   "docker-compose.yml"
+  "./buildSrc/src/main/groovy/spring-boot-app-template.java-conventions.gradle"
   "./spring-boot-app-template/build.gradle"
   "./spring-boot-app-template/Dockerfile"
   "./spring-boot-app-template/src/main/kotlin/com/yonatankarp/springbootapptemplate/controllers/RootController.kt"

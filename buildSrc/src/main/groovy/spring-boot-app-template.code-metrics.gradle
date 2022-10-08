@@ -1,5 +1,4 @@
 plugins {
-    id("jacoco")
     id("pmd")
     id("com.diffplug.spotless")
 }
@@ -24,19 +23,7 @@ spotless {
 
 pmd {
     toolVersion = "6.42.0"
-    sourceSets = [sourceSets.main]
     reportsDir = file("$project.buildDir/reports/pmd")
     ruleSets = []
     ruleSetFiles = files("config/pmd/ruleset.xml")
-}
-
-jacoco {
-    toolVersion = "0.8.7"
-}
-
-jacocoTestReport {
-    reports {
-        xml.required = true
-        html.required = true
-    }
 }

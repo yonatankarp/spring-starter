@@ -1,9 +1,8 @@
 plugins {
     id("jacoco")
-    id("pmd")
+    id("spring-boot-app-template.code-metrics")
     id("org.springframework.boot")
     id("io.spring.dependency-management")
-    id("com.diffplug.spotless")
     kotlin("jvm")
     kotlin("plugin.spring")
 }
@@ -41,5 +40,16 @@ tasks {
         finalizedBy(spotlessApply)
         finalizedBy(jacocoTestReport)
         finalizedBy(pmdTest)
+    }
+
+    jacoco {
+        toolVersion = "0.8.7"
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
     }
 }

@@ -5,7 +5,7 @@ plugins {
     id("spring-boot-app-template.code-metrics")
     id("spring-boot-app-template.publishing-conventions")
     id("com.diffplug.spotless") version "6.12.0" apply true
-    id("org.springframework.boot") version "2.7.5" apply false
+    id("org.springframework.boot") version "3.0.0" apply false
     id("io.spring.dependency-management") version "1.1.0" apply false
     kotlin("jvm") version "1.7.22" apply false
     kotlin("plugin.spring") version "1.7.22" apply false

@@ -7,6 +7,12 @@ plugins {
     kotlin("plugin.spring")
 }
 
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 val coroutinesVersion = "1.6.4"
 val mockkVersion = "1.13.2"
 val mockkSpringVersion = "3.1.1"

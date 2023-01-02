@@ -4,7 +4,7 @@ plugins {
     id("spring-boot-app-template.java-conventions")
     id("spring-boot-app-template.code-metrics")
     id("spring-boot-app-template.publishing-conventions")
-    id("com.diffplug.spotless") version "6.12.0" apply true
+    id("com.diffplug.spotless") version "6.12.1" apply true
     id("org.springframework.boot") version "3.0.1" apply false
     id("io.spring.dependency-management") version "1.1.0" apply false
     val kotlinVersion = "1.8.0"

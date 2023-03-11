@@ -10,6 +10,7 @@ plugins {
 kotlin {
     jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
+        target { JavaLanguageVersion.of(17) }
     }
 }
 
@@ -59,3 +60,8 @@ tasks {
         }
     }
 }
+
+tasks.findByName("spotlessKotlin")?.dependsOn("compileKotlin")
+tasks.findByName("spotlessKotlin")?.dependsOn("compileTestKotlin")
+tasks.findByName("spotlessKotlin")?.dependsOn("test")
+tasks.findByName("spotlessKotlin")?.dependsOn("jacocoTestReport")

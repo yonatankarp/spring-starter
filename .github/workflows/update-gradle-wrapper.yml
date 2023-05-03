@@ -16,6 +16,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
       - name: Update Gradle Wrapper
         # **WARN**: as this action comes from the org without public members,
         # and it has relatively few "stars", so this specific SHA passed #infosec

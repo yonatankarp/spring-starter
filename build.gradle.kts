@@ -1,12 +1,13 @@
 plugins {
-    id("jacoco")
-    id("pmd")
-    id("spring-boot-app-template.java-conventions")
-    id("spring-boot-app-template.code-metrics")
-    id("spring-boot-app-template.publishing-conventions")
     id("com.diffplug.spotless") version libs.versions.spotless apply true
-    id("org.springframework.boot") version libs.versions.springboot apply false
+    id("com.revolut.jooq-docker") version libs.versions.jooq.docker.plugin apply false
     id("io.spring.dependency-management") version libs.versions.spring.dependency.management apply false
+    id("jacoco")
+    id("org.springframework.boot") version libs.versions.springboot apply false
+    id("pmd")
+    id("spring-boot-app-template.code-metrics")
+    id("spring-boot-app-template.java-conventions")
+    id("spring-boot-app-template.publishing-conventions")
     kotlin("jvm") version libs.versions.kotlin apply false
     kotlin("plugin.spring") version libs.versions.kotlin apply false
 }

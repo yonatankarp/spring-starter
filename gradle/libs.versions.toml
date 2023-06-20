@@ -6,10 +6,14 @@ jvmTarget = "17"
 kotlin = "1.8.22"
 mockk = "1.13.5"
 mockkSpring = "4.0.2"
+postgres = "42.6.0"
 pwd = "6.42.0"
 spotless = "6.19.0"
 spring_dependency_management = "1.1.0"
 springboot = "3.1.0"
+jooq = "0.9.15"
+jooq_docker_plugin = "0.3.9"
+testcontainers = "1.18.3"
 
 [libraries]
 
@@ -23,13 +27,22 @@ kotlinx_coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 
 # Spring Boot
 springboot_actuator_starter = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+springboot_jdbc_starter = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
+springboot_jooq_starter = { module = "org.springframework.boot:spring-boot-starter-jooq" }
 springboot_test_starter = { module = "org.springframework.boot:spring-boot-starter-test" }
 springboot_validation_starter = { module = "org.springframework.boot:spring-boot-starter-validation" }
 springboot_web_starter = { module = "org.springframework.boot:spring-boot-starter-web" }
 
+# Persistence
+flyway_core = { module = "org.flywaydb:flyway-core" }
+hikaricp_core = { module = "com.zaxxer:HikariCP" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }
+
 # Testing
 mockk_core = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk_spring = { module = "com.ninja-squad:springmockk", version.ref = "mockkSpring" }
+testcontainers_jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+testcontainers_postgres = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
 
 [bundles]
 
@@ -44,7 +57,14 @@ kotlin_all = [
 
 springboot_all = [
     "springboot_actuator_starter",
+    "springboot_jdbc_starter",
+    "springboot_jooq_starter",
     "springboot_test_starter",
     "springboot_validation_starter",
     "springboot_web_starter",
+]
+
+persistence_support_all = [
+    "flyway_core",
+    "hikaricp_core",
 ]

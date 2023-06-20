@@ -44,6 +44,8 @@ The template is a working application with a minimal setup. It contains:
 - integration with GitHub Actions
 - integration with Dependabot
 - integration with SonarCloudA
+- Integration with PostgreSQL, Flyway & Jooq
+- Integration with test containers
 - MIT license and contribution information
 
 ## Setup

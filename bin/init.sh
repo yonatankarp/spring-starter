@@ -32,6 +32,7 @@ declare -a files_with_slug=(
   "./buildSrc/src/main/groovy/spring-boot-app-template.java-conventions.gradle"
   "./spring-boot-app-template/build.gradle.kts"
   "./spring-boot-app-template/Dockerfile"
+  "./spring-boot-app-template/src/main/resources/application.yml"
   "./spring-boot-app-template/src/main/kotlin/com/yonatankarp/springbootapptemplate/controllers/RootController.kt"
   "./.github/workflows/ci.yml"
   "./.github/workflows/linting.yml"

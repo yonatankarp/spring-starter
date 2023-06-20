@@ -4,6 +4,9 @@
 [ci-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/ci.yml
 [linter-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml/badge.svg
 [linter-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml
+[codeql-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/codeql.yml/badge.svg
+[codeql-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/codeql.yml
+
 [quality-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=alert_status
 [quality-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
 [maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=sqale_rating
@@ -19,7 +22,7 @@
 
 | **Type**     | **Status**                                                                                                                                                                             |
 |--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CI pipelines | [![Build][ci-badge]][ci-state]  [![Build][linter-badge]][linter-state]                                                                                                                 |
+| CI pipelines | [![Build][ci-badge]][ci-state]  [![Linters][linter-badge]][linter-state]  [![CodeQL][codeql-badge]][codeql-state]                                                                      |
 | Maintenance  | [![Quality Gate Status][quality-badge]][quality-state] [![Maintainability Rating][maintainability-badge]][maintainability-state] [![Technical Debt][tech-debt-badge]][tech-debt-state] |
 | Security     | [![Security Rating][security-badge]][security-state] [![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-state]                                                                |
 | License      | [![License: MIT][license-badge]][license-link]                                                                                                                                         |
@@ -46,6 +49,7 @@ The template is a working application with a minimal setup. It contains:
 - integration with SonarCloudA
 - Integration with PostgreSQL, Flyway & Jooq
 - Integration with test containers
+- integration with [CodeQL](https://github.com/yonatankarp/spring-boot-app-template/security/code-scanning)
 - MIT license and contribution information
 
 ## Setup

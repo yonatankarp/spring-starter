@@ -1,0 +1,40 @@
+name: CodeQL SAST
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  codeql-sast:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3.5.3
+
+      - name: Install Java
+        uses: actions/setup-java@v3.11.0
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: 'kotlin'
+
+      - name: Assemble JAR artifact
+        id: build_jar
+        env:
+          GRADLE_USER_HOME: .gradle
+        run: ./gradlew assemble
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2

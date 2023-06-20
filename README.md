@@ -50,6 +50,8 @@ The template is a working application with a minimal setup. It contains:
 - Integration with PostgreSQL, Flyway & Jooq
 - Integration with test containers
 - integration with [CodeQL](https://github.com/yonatankarp/spring-boot-app-template/security/code-scanning)
+- health check, readiness & liveness probs for k8s integration
+
 - MIT license and contribution information
 
 ## Setup

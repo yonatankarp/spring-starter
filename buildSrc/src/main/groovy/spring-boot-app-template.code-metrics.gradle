@@ -22,7 +22,7 @@ spotless {
 }
 
 pmd {
-    toolVersion = "6.42.0"
+    toolVersion = libs.versions.pwd
     reportsDir = file("$project.buildDir/reports/pmd")
     ruleSets = []
     ruleSetFiles = files("config/pmd/ruleset.xml")

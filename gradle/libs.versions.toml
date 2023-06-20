@@ -1,0 +1,50 @@
+[versions]
+
+coroutines = "1.7.1"
+jacoco = "0.8.7"
+jvmTarget = "17"
+kotlin = "1.8.22"
+mockk = "1.13.5"
+mockkSpring = "4.0.2"
+pwd = "6.42.0"
+spotless = "6.19.0"
+spring_dependency_management = "1.1.0"
+springboot = "3.1.0"
+
+[libraries]
+
+# Kotlin & Coroutines
+kotlin_core = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
+kotlin_jackson_module = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+kotlin_reflection = { module = "org.jetbrains.kotlin:kotlin-reflect" }
+kotlinx_coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx_coroutines_reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "coroutines" }
+kotlinx_coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+
+# Spring Boot
+springboot_actuator_starter = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+springboot_test_starter = { module = "org.springframework.boot:spring-boot-starter-test" }
+springboot_validation_starter = { module = "org.springframework.boot:spring-boot-starter-validation" }
+springboot_web_starter = { module = "org.springframework.boot:spring-boot-starter-web" }
+
+# Testing
+mockk_core = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk_spring = { module = "com.ninja-squad:springmockk", version.ref = "mockkSpring" }
+
+[bundles]
+
+kotlin_all = [
+    "kotlin_core",
+    "kotlin_jackson_module",
+    "kotlin_reflection",
+    "kotlinx_coroutines_core",
+    "kotlinx_coroutines_reactor",
+    "kotlinx_coroutines_test",
+]
+
+springboot_all = [
+    "springboot_actuator_starter",
+    "springboot_test_starter",
+    "springboot_validation_starter",
+    "springboot_web_starter",
+]

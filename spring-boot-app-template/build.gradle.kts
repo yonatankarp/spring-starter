@@ -9,28 +9,21 @@ plugins {
 
 kotlin {
     jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
-        target { JavaLanguageVersion.of(17) }
+        languageVersion.set(JavaLanguageVersion.of(libs.versions.jvmTarget.get()))
+        target { JavaLanguageVersion.of(libs.versions.jvmTarget.get()) }
     }
 }
 
-val coroutinesVersion = "1.6.4"
-val mockkVersion = "1.13.2"
-val mockkSpringVersion = "3.1.1"
-
 dependencies {
     // Spring Boot
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation(libs.bundles.springboot.all)
 
     // Kotlin
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation(libs.bundles.kotlin.all)
 
     // Tests
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation(libs.mockk.core)
+    testImplementation(libs.mockk.spring)
 }
 
 tasks {
@@ -50,7 +43,7 @@ tasks {
     }
 
     jacoco {
-        toolVersion = "0.8.7"
+        toolVersion = libs.versions.jacoco.get()
     }
 
     jacocoTestReport {
@@ -61,7 +54,10 @@ tasks {
     }
 }
 
-tasks.findByName("spotlessKotlin")?.dependsOn("compileKotlin")
-tasks.findByName("spotlessKotlin")?.dependsOn("compileTestKotlin")
-tasks.findByName("spotlessKotlin")?.dependsOn("test")
-tasks.findByName("spotlessKotlin")?.dependsOn("jacocoTestReport")
+val tasksDependencies = mapOf(
+    "spotlessKotlin" to listOf("compileKotlin", "compileTestKotlin", "test", "jacocoTestReport")
+)
+
+tasksDependencies.forEach { (taskName, dependencies) ->
+    tasks.findByName(taskName)?.dependsOn(dependencies)
+}

@@ -4,12 +4,11 @@ plugins {
     id("spring-boot-app-template.java-conventions")
     id("spring-boot-app-template.code-metrics")
     id("spring-boot-app-template.publishing-conventions")
-    id("com.diffplug.spotless") version "6.19.0" apply true
-    id("org.springframework.boot") version "3.1.0" apply false
-    id("io.spring.dependency-management") version "1.1.0" apply false
-    val kotlinVersion = "1.8.22"
-    kotlin("jvm") version kotlinVersion apply false
-    kotlin("plugin.spring") version kotlinVersion apply false
+    id("com.diffplug.spotless") version libs.versions.spotless apply true
+    id("org.springframework.boot") version libs.versions.springboot apply false
+    id("io.spring.dependency-management") version libs.versions.spring.dependency.management apply false
+    kotlin("jvm") version libs.versions.kotlin apply false
+    kotlin("plugin.spring") version libs.versions.kotlin apply false
 }
 
 subprojects {

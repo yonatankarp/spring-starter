@@ -52,14 +52,6 @@ jobs:
           config: './config/markdown-lint/rules.json'
           args: '**/*.md'
 
-      - name: PMD Static Code Analysis
-        if: steps.changes.outputs.source_code == 'true'
-        id: pmd
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew pmdMain pmdTest
-
       - name: Check Style
         if: steps.changes.outputs.source_code == 'true'
         id: spotless

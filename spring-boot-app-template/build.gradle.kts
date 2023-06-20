@@ -1,8 +1,9 @@
 plugins {
-    id("jacoco")
-    id("spring-boot-app-template.code-metrics")
-    id("org.springframework.boot")
+    id("com.revolut.jooq-docker")
     id("io.spring.dependency-management")
+    id("jacoco")
+    id("org.springframework.boot")
+    id("spring-boot-app-template.code-metrics")
     kotlin("jvm")
     kotlin("plugin.spring")
 }
@@ -21,10 +22,25 @@ dependencies {
     // Kotlin
     implementation(libs.bundles.kotlin.all)
 
+    // Persistence
+    runtimeOnly(libs.postgresql)
+    jdbc(libs.postgresql) // Required to generate JOOQ models
+    implementation(libs.bundles.persistence.support.all)
+
     // Tests
     testImplementation(libs.mockk.core)
     testImplementation(libs.mockk.spring)
+
+    testImplementation(libs.testcontainers.jupiter)
+    testImplementation(libs.testcontainers.postgres)
 }
+
+dependencyManagement {
+    imports {
+        mavenBom("org.testcontainers:testcontainers-bom:1.17.3")
+    }
+}
+
 
 tasks {
     getByName<Jar>("jar") {

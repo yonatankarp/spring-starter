@@ -1,2 +1,13 @@
 server:
   port: 8080
+
+spring:
+  application:
+    name: spring-boot-app-template
+  datasource:
+    url: "jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_SCHEMA:spring-boot-app-template}"
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:secret}
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true

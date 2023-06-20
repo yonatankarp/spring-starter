@@ -1,16 +1,19 @@
 version: "3.9"
 services:
-  spring-boot-app-template:
-    container_name: spring-boot-app-template
-    build:
-      context: .
-      dockerfile: ./spring-boot-app-template/Dockerfile
+  postgres:
+    container_name: spring-boot-app-template-postgres
     networks:
       - proxynet
+    image: postgres:14
+    restart: always
     environment:
-      SERVICE_PORT: 8080
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "secret"
+      POSTGRES_DB: "spring-boot-app-template"
     ports:
-      - "8080:8080"
+      - "5432:5432"
+    expose:
+      - "5432"
 
 networks:
   proxynet:

@@ -4,7 +4,6 @@ plugins {
     id("io.spring.dependency-management") version libs.versions.spring.dependency.management apply false
     id("jacoco")
     id("org.springframework.boot") version libs.versions.springboot apply false
-    id("pmd")
     id("spring-boot-app-template.code-metrics")
     id("spring-boot-app-template.java-conventions")
     id("spring-boot-app-template.publishing-conventions")

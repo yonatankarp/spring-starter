@@ -94,7 +94,7 @@ perl -i -pe "s/.*\n/# $component_name\n/g if 1 .. 1" README.md
 
 # Self-destruct
 echo  "Self destroy in 3... 2... 1..."
-rm bin/init.sh
+rm bin
 
 # Return to original directory
 popd > /dev/null || exit 1

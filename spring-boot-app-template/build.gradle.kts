@@ -55,7 +55,6 @@ tasks {
         useJUnitPlatform()
         finalizedBy(spotlessApply)
         finalizedBy(jacocoTestReport)
-        finalizedBy(pmdTest)
     }
 
     jacoco {

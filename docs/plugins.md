@@ -2,11 +2,6 @@
 
 The template contains the following plugins:
 
-- [pmd](https://docs.gradle.org/current/userguide/pmd_plugin.html)
-
-Performs static code analysis to finds common programming flaws. Included in
-gradle `check` task.
-
 - [jacoco](https://docs.gradle.org/current/userguide/jacoco_plugin.html)
 
 Provides code coverage metrics for Java code via integration with JaCoCo.

@@ -1,5 +1,4 @@
 plugins {
-    id("pmd")
     id("com.diffplug.spotless")
 }
 
@@ -19,11 +18,4 @@ spotless {
         // see https://github.com/shyiko/ktlint#standard-rules
         ktlint()
     }
-}
-
-pmd {
-    toolVersion = libs.versions.pwd
-    reportsDir = file("$project.buildDir/reports/pmd")
-    ruleSets = []
-    ruleSetFiles = files("config/pmd/ruleset.xml")
 }

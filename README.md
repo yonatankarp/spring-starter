@@ -133,28 +133,6 @@ You should get a response similar to this:
   {"status":"UP","diskSpace":{"status":"UP","total":249644974080,"free":137188298752,"threshold":10485760}}
 ```
 
-### Alternative script to run application
-
-To skip all the setting up and building, just execute the following command:
-
-```shell
-./bin/run-in-docker.sh
-```
-
-For more information:
-
-```shell
-./bin/run-in-docker.sh --help
-```
-
-## Running the tests
-
-You can run the project tests via Gradle by executing the following command:
-
-```shell
-./gradlew test
-```
-
 ### And coding style tests
 
 This project uses [Spotless Gradle plugin](https://github.com/diffplug/spotless)

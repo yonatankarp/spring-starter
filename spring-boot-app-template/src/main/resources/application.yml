@@ -41,3 +41,8 @@ spring:
     driver-class-name: org.postgresql.Driver
   flyway:
     enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /api-docs
+    operations-sorter: method

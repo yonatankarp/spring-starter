@@ -51,7 +51,7 @@ The template is a working application with a minimal setup. It contains:
 - Integration with test containers
 - integration with [CodeQL](https://github.com/yonatankarp/spring-boot-app-template/security/code-scanning)
 - health check, readiness & liveness probs for k8s integration
-
+- OpenApi spec code generation & documentation
 - MIT license and contribution information
 
 ## Setup
@@ -131,6 +131,36 @@ You should get a response similar to this:
 
 ```json
   {"status":"UP","diskSpace":{"status":"UP","total":249644974080,"free":137188298752,"threshold":10485760}}
+```
+
+### API Documentation
+
+Once the service is up, you can access the API documentation from your browser
+at the following URL: `http://localhost:8080/api-docs`.
+
+You can use this page as a playground to test the API, and the interactions with
+the service.
+
+### Alternative script to run application
+
+To skip all the setting up and building, just execute the following command:
+
+```shell
+./bin/run-in-docker.sh
+```
+
+For more information:
+
+```shell
+./bin/run-in-docker.sh --help
+```
+
+## Running the tests
+
+You can run the project tests via Gradle by executing the following command:
+
+```shell
+./gradlew test
 ```
 
 ### And coding style tests

@@ -3,6 +3,7 @@ plugins {
     id("com.revolut.jooq-docker") version libs.versions.jooq.docker.plugin apply false
     id("io.spring.dependency-management") version libs.versions.spring.dependency.management apply false
     id("jacoco")
+    id("org.openapi.generator") version libs.versions.swagger apply false
     id("org.springframework.boot") version libs.versions.springboot apply false
     id("spring-boot-app-template.code-metrics")
     id("spring-boot-app-template.java-conventions")

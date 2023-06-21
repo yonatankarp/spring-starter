@@ -1,24 +1,16 @@
 package com.yonatankarp.springbootapptemplate.controllers
 
+import com.yonatankarp.springbootapptemplate.openapi.v1.DemoApiV1Api
+import com.yonatankarp.springbootapptemplate.openapi.v1.models.DemoResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.http.ResponseEntity.ok
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 /**
  * Default endpoints per application.
  */
 @RestController
-class RootController {
-    /**
-     * Root GET endpoint.
-     *
-     * Azure application service has a hidden feature of making requests to root endpoint when
-     * "Always On" is turned on.
-     * This is the endpoint to deal with that and therefore silence the unnecessary 404s as a response code.
-     *
-     * @return Welcome message from the service.
-     */
-    @GetMapping("/")
-    fun welcome(): ResponseEntity<String> = ok("Welcome to spring-boot-app-template")
+class RootController : DemoApiV1Api<Any> {
+    override fun helloWorld(): ResponseEntity<Any> =
+        ok(DemoResponse("hello world"))
 }

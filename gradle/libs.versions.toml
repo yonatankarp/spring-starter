@@ -2,6 +2,8 @@
 
 coroutines = "1.7.1"
 jacoco = "0.8.7"
+jooq = "0.9.15"
+jooq_docker_plugin = "0.3.9"
 jvmTarget = "17"
 kotlin = "1.8.22"
 mockk = "1.13.5"
@@ -11,8 +13,8 @@ pwd = "6.42.0"
 spotless = "6.19.0"
 spring_dependency_management = "1.1.0"
 springboot = "3.1.0"
-jooq = "0.9.15"
-jooq_docker_plugin = "0.3.9"
+springdoc = "2.1.0"
+swagger = "6.6.0"
 testcontainers = "1.18.3"
 
 [libraries]
@@ -32,6 +34,7 @@ springboot_jooq_starter = { module = "org.springframework.boot:spring-boot-start
 springboot_test_starter = { module = "org.springframework.boot:spring-boot-starter-test" }
 springboot_validation_starter = { module = "org.springframework.boot:spring-boot-starter-validation" }
 springboot_web_starter = { module = "org.springframework.boot:spring-boot-starter-web" }
+springdoc_openapi_starter = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
 
 # Persistence
 flyway_core = { module = "org.flywaydb:flyway-core" }

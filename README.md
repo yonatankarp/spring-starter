@@ -35,6 +35,8 @@ This is a template to fast and easily bootstrap new spring boot web
 applications that including full build based on Gradle, CI based on GitHub
 actions, and containers based on Docker
 
+For the C4 diagram of the system visit [docs/c4/README.md](./docs/c4/README.md).
+
 ## What's inside
 
 The template is a working application with a minimal setup. It contains:
@@ -52,6 +54,7 @@ The template is a working application with a minimal setup. It contains:
 - integration with [CodeQL](https://github.com/yonatankarp/spring-boot-app-template/security/code-scanning)
 - health check, readiness & liveness probs for k8s integration
 - OpenApi spec code generation & documentation
+- C4 model architecture diagrams
 - MIT license and contribution information
 
 ## Setup

@@ -3,8 +3,26 @@ name: ci
 on:
   pull_request:
     types: [ opened, synchronize, reopened, ready_for_review ]
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+      - 'bin/**'
+      - '.github/codeowners'
+      - '.github/dependabot.yml'
+      - '.github/pull_request_template.md'
+      - '.github/stale.yml'
+      - 'docker-compose.yml'
   pull_request_target:
     types: [ opened, synchronize, reopened, ready_for_review ]
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+      - 'bin/**'
+      - '.github/codeowners'
+      - '.github/dependabot.yml'
+      - '.github/pull_request_template.md'
+      - '.github/stale.yml'
+      - 'docker-compose.yml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

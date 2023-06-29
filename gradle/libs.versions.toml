@@ -1,6 +1,6 @@
 [versions]
 
-coroutines = "1.7.1"
+coroutines = "1.7.2"
 jacoco = "0.8.7"
 jooq = "0.9.15"
 jooq_docker_plugin = "0.3.9"

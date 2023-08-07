@@ -13,7 +13,7 @@ pwd = "6.42.0"
 spotless = "6.19.0"
 spring_dependency_management = "1.1.0"
 springboot = "3.1.0"
-springdoc = "2.1.0"
+springdoc = "2.2.0"
 swagger = "6.6.0"
 testcontainers = "1.18.3"
 

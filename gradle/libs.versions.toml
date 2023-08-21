@@ -15,7 +15,7 @@ spring_dependency_management = "1.1.0"
 springboot = "3.1.0"
 springdoc = "2.2.0"
 swagger = "6.6.0"
-testcontainers = "1.18.3"
+testcontainers = "1.19.0"
 
 [libraries]
 

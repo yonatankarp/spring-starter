@@ -1,17 +1,14 @@
 [versions]
 
 coroutines = "1.7.3"
-jacoco = "0.8.7"
-jooq = "0.9.15"
-jooq_docker_plugin = "0.3.9"
+jooqDockerPlugin = "0.3.9"
 jvmTarget = "17"
 kotlin = "1.8.22"
 mockk = "1.13.7"
 mockkSpring = "4.0.2"
 postgres = "42.6.0"
-pwd = "6.42.0"
 spotless = "6.19.0"
-spring_dependency_management = "1.1.0"
+springDependencyManagement = "1.1.0"
 springboot = "3.1.0"
 springdoc = "2.2.0"
 swagger = "6.6.0"
@@ -44,8 +41,19 @@ postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }
 # Testing
 mockk_core = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk_spring = { module = "com.ninja-squad:springmockk", version.ref = "mockkSpring" }
-testcontainers_jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
-testcontainers_postgres = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+testcontainers_bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
+testcontainers_jupiter = { module = "org.testcontainers:junit-jupiter"}
+testcontainers_postgres = { module = "org.testcontainers:postgresql" }
+
+[plugins]
+
+jooq = { id = "com.revolut.jooq-docker", version.ref = "jooqDockerPlugin" }
+kotlin_jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin_spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+openapi_generator = { id = "org.openapi.generator", version.ref = "swagger" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+springboot = { id = "org.springframework.boot", version.ref = "springboot" }
+springboot_dependency_management = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }
 
 [bundles]
 

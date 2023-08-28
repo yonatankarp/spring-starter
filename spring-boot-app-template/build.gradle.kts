@@ -1,14 +1,14 @@
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask as GenerateOpenApiTask
 
 plugins {
-    id("com.revolut.jooq-docker")
-    id("io.spring.dependency-management")
     id("jacoco")
-    id("org.openapi.generator")
-    id("org.springframework.boot")
     id("spring-boot-app-template.code-metrics")
-    kotlin("jvm")
-    kotlin("plugin.spring")
+    alias(libs.plugins.jooq)
+    alias(libs.plugins.springboot.dependency.management)
+    alias(libs.plugins.openapi.generator)
+    alias(libs.plugins.springboot)
+    alias(libs.plugins.kotlin.jvm) apply true
+    alias(libs.plugins.kotlin.spring) apply true
 }
 
 kotlin {
@@ -36,17 +36,10 @@ dependencies {
     // Tests
     testImplementation(libs.mockk.core)
     testImplementation(libs.mockk.spring)
-
+    testImplementation(platform(libs.testcontainers.bom))
     testImplementation(libs.testcontainers.jupiter)
     testImplementation(libs.testcontainers.postgres)
 }
-
-dependencyManagement {
-    imports {
-        mavenBom("org.testcontainers:testcontainers-bom:${libs.versions.testcontainers.get()}")
-    }
-}
-
 
 tasks {
     getByName<Jar>("jar") {
@@ -61,10 +54,6 @@ tasks {
         useJUnitPlatform()
         finalizedBy(spotlessApply)
         finalizedBy(jacocoTestReport)
-    }
-
-    jacoco {
-        toolVersion = libs.versions.jacoco.get()
     }
 
     jacocoTestReport {
@@ -88,7 +77,7 @@ tasksDependencies.forEach { (taskName, dependencies) ->
 /********************************************/
 
 val apiDirectoryPath = "$projectDir/src/main/resources/api"
-val openApiGenerateOutputDir = "$buildDir/generated/openapi"
+val openApiGenerateOutputDir = "${layout.buildDirectory.get()}/generated/openapi"
 
 data class ApiSpec(
     val name: String,

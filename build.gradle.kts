@@ -1,15 +1,15 @@
 plugins {
-    id("com.diffplug.spotless") version libs.versions.spotless apply true
-    id("com.revolut.jooq-docker") version libs.versions.jooq.docker.plugin apply false
-    id("io.spring.dependency-management") version libs.versions.spring.dependency.management apply false
     id("jacoco")
-    id("org.openapi.generator") version libs.versions.swagger apply false
-    id("org.springframework.boot") version libs.versions.springboot apply false
     id("spring-boot-app-template.code-metrics")
     id("spring-boot-app-template.java-conventions")
     id("spring-boot-app-template.publishing-conventions")
-    kotlin("jvm") version libs.versions.kotlin apply false
-    kotlin("plugin.spring") version libs.versions.kotlin apply false
+    alias(libs.plugins.spotless) apply true
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.kotlin.spring) apply false
+    alias(libs.plugins.springboot.dependency.management) apply false
+    alias(libs.plugins.springboot) apply false
+    alias(libs.plugins.openapi.generator) apply false
+    alias(libs.plugins.jooq) apply false
 }
 
 subprojects {

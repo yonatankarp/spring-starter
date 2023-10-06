@@ -11,6 +11,5 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 class RootController : DemoApiV1Api<Any> {
-    override fun helloWorld(): ResponseEntity<Any> =
-        ok(DemoResponse("hello world"))
+    override fun helloWorld(): ResponseEntity<Any> = ok(DemoResponse("hello world"))
 }

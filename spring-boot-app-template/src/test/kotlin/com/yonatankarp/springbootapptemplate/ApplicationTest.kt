@@ -14,7 +14,6 @@ import org.testcontainers.junit.jupiter.Testcontainers
 class ApplicationTest(
     private val jooq: DSLContext,
 ) : AbstractIntegrationTest() {
-
     @Test
     fun `smoke test`() {
         assertNotNull(jooq)

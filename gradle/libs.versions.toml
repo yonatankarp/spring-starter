@@ -63,14 +63,12 @@ kotlin_all = [
     "kotlin_reflection",
     "kotlinx_coroutines_core",
     "kotlinx_coroutines_reactor",
-    "kotlinx_coroutines_test",
 ]
 
 springboot_all = [
     "springboot_actuator_starter",
     "springboot_jdbc_starter",
     "springboot_jooq_starter",
-    "springboot_test_starter",
     "springboot_validation_starter",
     "springboot_web_starter",
 ]
@@ -78,4 +76,13 @@ springboot_all = [
 persistence_support_all = [
     "flyway_core",
     "hikaricp_core",
+]
+
+test_all = [
+    "kotlinx_coroutines_test",
+    "mockk_core",
+    "mockk_spring",
+    "springboot_test_starter",
+    "testcontainers_jupiter",
+    "testcontainers_postgres",
 ]

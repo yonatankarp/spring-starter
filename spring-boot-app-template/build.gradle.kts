@@ -1,7 +1,7 @@
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask as GenerateOpenApiTask
 
 plugins {
-    id("jacoco")
+    jacoco
     id("spring-boot-app-template.code-metrics")
     alias(libs.plugins.jooq)
     alias(libs.plugins.springboot.dependency.management)
@@ -34,15 +34,12 @@ dependencies {
     implementation(libs.springdoc.openapi.starter)
 
     // Tests
-    testImplementation(libs.mockk.core)
-    testImplementation(libs.mockk.spring)
     testImplementation(platform(libs.testcontainers.bom))
-    testImplementation(libs.testcontainers.jupiter)
-    testImplementation(libs.testcontainers.postgres)
+    testImplementation(libs.bundles.test.all)
 }
 
 tasks {
-    getByName<Jar>("jar") {
+    jar {
         enabled = false
     }
 
@@ -50,7 +47,7 @@ tasks {
         finalizedBy(spotlessApply)
     }
 
-    withType<Test> {
+    test {
         useJUnitPlatform()
         finalizedBy(spotlessApply)
         finalizedBy(jacocoTestReport)

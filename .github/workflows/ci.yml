@@ -50,7 +50,7 @@ jobs:
 
       - name: Git Checkout
         if: github.event_name != 'pull_request_target'
-        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
         # Do not trigger a checkout when opening PRs from a fork (helps avoid
         # "pwnn request". See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target )
         with:
@@ -58,7 +58,7 @@ jobs:
 
       - name: Dependabot Checkout
         if: github.event_name == 'pull_request_target'
-        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
         with:
           # Dependabot can only checkout at the HEAD of the PR branch
           ref: ${{ github.event.pull_request.head.sha }}

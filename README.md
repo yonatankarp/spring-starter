@@ -1,7 +1,7 @@
 # spring-boot-app-template
 
-[ci-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/ci.yml/badge.svg
-[ci-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/ci.yml
+[build-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/build.yml/badge.svg
+[build-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/build.yml
 [linter-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml/badge.svg
 [linter-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml
 [codeql-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/codeql.yml/badge.svg
@@ -22,7 +22,7 @@
 
 | **Type**     | **Status**                                                                                                                                                                             |
 |--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CI pipelines | [![Build][ci-badge]][ci-state]  [![Linters][linter-badge]][linter-state]  [![CodeQL][codeql-badge]][codeql-state]                                                                      |
+| CI pipelines | [![Build][build-badge]][build-state]  [![Linters][linter-badge]][linter-state]  [![CodeQL][codeql-badge]][codeql-state]                                                                |
 | Maintenance  | [![Quality Gate Status][quality-badge]][quality-state] [![Maintainability Rating][maintainability-badge]][maintainability-state] [![Technical Debt][tech-debt-badge]][tech-debt-state] |
 | Security     | [![Security Rating][security-badge]][security-state] [![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-state]                                                                |
 | License      | [![License: MIT][license-badge]][license-link]                                                                                                                                         |

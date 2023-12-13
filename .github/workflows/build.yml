@@ -6,6 +6,10 @@ on:
   pull_request_target:
     types: [ opened, synchronize, reopened, ready_for_review ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.job }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   pipeline:
     strategy:
@@ -20,3 +24,6 @@ jobs:
     needs: pipeline
     if: ${{ github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]' }}
     uses: yonatankarp/github-actions/.github/workflows/dependabot-auto-merge.yml@v1
+
+  linters:
+    uses: yonatankarp/github-actions/.github/workflows/linters.yml@v1

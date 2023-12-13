@@ -7,27 +7,4 @@ on:
 
 jobs:
   update-gradle-wrapper:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout PR
-        if: ${{ github.event_name != 'pull_request_target' }}
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
-        with:
-          fetch-depth: 0
-
-      - name: Install Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: 'temurin'
-
-      - name: Update Gradle Wrapper
-        # **WARN**: as this action comes from the org without public members,
-        # and it has relatively few "stars", so this specific SHA passed #infosec
-        # review from SumUp. Please do NOT upgrade this version unless it is
-        # incompatible with our build - then we'll have to review the version
-        # diff.
-        uses: gradle-update/update-gradle-wrapper-action@0407394b9d173dfc9cf5695f9f560fef6d61a5fe
-        with:
-          repo-token: ${{ secrets.REVIEWER_GITHUB_TOKEN }}
+    uses:  yonatankarp/github-actions/.github/workflows/update-gradle-wrapper.yml@v1

@@ -2,8 +2,8 @@
 
 # Script to initialise project by executing steps as follows:
 #   - Replace port number
-#   - Replace package `spring-boot-app-template`
-#   - Replace app name from `spring-boot-app-template`
+#   - Replace package `spring-starter`
+#   - Replace app name from `spring-starter`
 #   - Clean-up README file from template related info
 #   - Self-destruct
 
@@ -14,14 +14,14 @@ then
 fi
 
 read -p "Replace application name with: " component_name
-read -p "Replace \`spring-boot-app-template\` package name with: " package
+read -p "Replace \`spring-starter\` package name with: " package
 
 pushd "$(dirname "$0")"/.. > /dev/null || exit 1
 
 declare -a files_with_port=(
   "README.md"
-  "./spring-boot-app-template/Dockerfile"
-  "./spring-boot-app-template/src/main/resources/application.yml"
+  "./spring-starter/Dockerfile"
+  "./spring-starter/src/main/resources/application.yml"
 )
 
 declare -a files_with_slug=(
@@ -29,13 +29,13 @@ declare -a files_with_slug=(
   "settings.gradle.kts"
   "README.md"
   "docker-compose.yml"
-  "./buildSrc/src/main/groovy/spring-boot-app-template.java-conventions.gradle"
-  "./spring-boot-app-template/build.gradle.kts"
-  "./spring-boot-app-template/Dockerfile"
-  "./spring-boot-app-template/src/main/resources/application.yml"
-  "./spring-boot-app-template/src/main/kotlin/com/yonatankarp/springbootapptemplate/controllers/RootController.kt"
-  "./.github/workflows/ci.yml"
-  "./.github/workflows/linting.yml"
+  "./buildSrc/src/main/groovy/spring-starter.java-conventions.gradle"
+  "./buildSrc/src/main/groovy/spring-starter.publishing-conventions.gradle"
+  "./spring-starter/build.gradle.kts"
+  "./spring-starter/Dockerfile"
+  "./spring-starter/src/main/resources/application.yml"
+  "./spring-starter/src/main/kotlin/com/yonatankarp/spring/starter/adapters/input/http/rest/HelloWorldHttpAdapter.kt"
+  ".github/workflows/build.yml"
 )
 
 declare -a subdirectories_to_rename_package=(
@@ -59,12 +59,15 @@ done
 # Replace spring-boot-template slug
 for i in "${files_with_slug[@]}"
 do
-  perl -i -pe "s/spring-boot-app-template/$component_name/g" "${i}"
+  perl -i -pe "s/spring-starter/$component_name/g" "${i}"
 done
 
+# Replace OpenApi package name in Gradle plugin
+perl -i -pe "s/karp.spring.starter/karp.$package/g" spring-starter/build.gradle.kts
+
 # Replace demo package in all files under ./src
-find ./spring-boot-app-template/src -type f -print0 | xargs -0 perl -i -pe "s/karp.springbootapptemplate/karp.$package/g"
-perl -i -pe "s/karp.spring-boot-app-template/karp.$package/g" build.gradle.kts
+find ./spring-starter/src -type f -print0 | xargs -0 perl -i -pe "s/karp.spring.starter/karp.$package/g"
+perl -i -pe "s/karp.spring.starter/karp.$package/g" build.gradle.kts
 
 # Rename directory to provided package name
 
@@ -72,15 +75,15 @@ rm -rf "${component_name}"
 
 for dir in "${subdirectories_to_rename_package[@]}"
 do
-  git mv "./spring-boot-app-template/src/${dir}/kotlin/com/yonatankarp/springbootapptemplate" "./spring-boot-app-template/src/${dir}/kotlin/com/yonatankarp/${package}"
+  git mv "./spring-starter/src/${dir}/kotlin/com/yonatankarp/spring/starter" "./spring-starter/src/${dir}/kotlin/com/yonatankarp/${package}"
 done
 
-git mv "./spring-boot-app-template" "${component_name}"
+git mv "./spring-starter" "${component_name}"
 
 # Rename buildSrc files
 
-find . -type f -name "spring-boot-app-template*" |
-sed 's/\(.*\)\(spring-boot-app-template\)\(.*\)/git mv "\1\2\3" "\1'"${component_name}"'\3"/g' |
+find . -type f -name "spring-starter*" -not -path "*buildSrc/build/*" |
+sed 's/\(.*\)\(spring-starter\)\(.*\)/git mv "\1\2\3" "\1'"${component_name}"'\3"/g' |
 sh
 
 # Clean-up README file

@@ -1,22 +1,22 @@
-# spring-boot-app-template
+# spring-starter
 
-[build-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/build.yml/badge.svg
-[build-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/build.yml
-[linter-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml/badge.svg
-[linter-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/linting.yml
-[codeql-badge]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/codeql.yml/badge.svg
-[codeql-state]: https://github.com/yonatankarp/spring-boot-app-template/actions/workflows/codeql.yml
+[build-badge]: https://github.com/yonatankarp/spring-starter/actions/workflows/build.yml/badge.svg
+[build-state]: https://github.com/yonatankarp/spring-starter/actions/workflows/build.yml
+[linter-badge]: https://github.com/yonatankarp/spring-starter/actions/workflows/linting.yml/badge.svg
+[linter-state]: https://github.com/yonatankarp/spring-starter/actions/workflows/linting.yml
+[codeql-badge]: https://github.com/yonatankarp/spring-starter/actions/workflows/codeql.yml/badge.svg
+[codeql-state]: https://github.com/yonatankarp/spring-starter/actions/workflows/codeql.yml
 
-[quality-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=alert_status
-[quality-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
-[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=sqale_rating
-[maintainability-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
-[tech-debt-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=sqale_index
-[tech-debt-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
-[security-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=security_rating
-[security-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
-[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-boot-app-template&metric=vulnerabilities
-[vulnerabilities-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-boot-app-template
+[quality-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=alert_status
+[quality-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
+[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=sqale_rating
+[maintainability-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
+[tech-debt-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=sqale_index
+[tech-debt-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
+[security-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=security_rating
+[security-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
+[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=vulnerabilities
+[vulnerabilities-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
 [license-link]: https://opensource.org/licenses/MIT
 
@@ -51,7 +51,7 @@ The template is a working application with a minimal setup. It contains:
 - integration with SonarCloudA
 - Integration with PostgreSQL, Flyway & Jooq
 - Integration with test containers
-- integration with [CodeQL](https://github.com/yonatankarp/spring-boot-app-template/security/code-scanning)
+- integration with [CodeQL](https://github.com/yonatankarp/spring-starter/security/code-scanning)
 - health check, readiness & liveness probs for k8s integration
 - OpenApi spec code generation & documentation
 - C4 model architecture diagrams
@@ -114,7 +114,7 @@ For Apple M1 processor run the following instead:
 DOCKER_BUILDKIT=0 docker compose build
 ```
 
-Run the distribution (created in `spring-boot-app-template/build/install/spring-boot-app-template`
+Run the distribution (created in `spring-starter/build/install/spring-starter`
 directory) by executing the following command:
 
 ```shell

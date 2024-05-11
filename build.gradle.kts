@@ -1,8 +1,8 @@
 plugins {
     id("jacoco")
-    id("spring-boot-app-template.code-metrics")
-    id("spring-boot-app-template.java-conventions")
-    id("spring-boot-app-template.publishing-conventions")
+    id("spring-starter.code-metrics")
+    id("spring-starter.java-conventions")
+    id("spring-starter.publishing-conventions")
     alias(libs.plugins.spotless) apply true
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.spring) apply false
@@ -18,7 +18,7 @@ subprojects {
         mavenCentral()
         maven { url = uri("https://packages.confluent.io/maven/") }
         maven {
-            url = uri("https://maven.pkg.github.com/yonatankarp/spring-boot-app-template")
+            url = uri("https://maven.pkg.github.com/yonatankarp/spring-starter")
             credentials {
                 username = findProperty("gpr.user")?.toString() ?: System.getenv("GITHUB_ACTOR")
                 password = findProperty("gpr.key")?.toString() ?: System.getenv("GITHUB_TOKEN")

@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   postgres:
-    container_name: spring-boot-app-template-postgres
+    container_name: spring-starter-postgres
     networks:
       - proxynet
     image: postgres:14
@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "secret"
-      POSTGRES_DB: "spring-boot-app-template"
+      POSTGRES_DB: "spring-starter"
     ports:
       - "5432:5432"
     expose:
@@ -17,4 +17,4 @@ services:
 
 networks:
   proxynet:
-    name: spring-boot-app-template-network
+    name: spring-starter-network

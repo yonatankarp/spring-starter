@@ -119,7 +119,7 @@ val supportedApis = listOf(
 
 // Iterate over the api list and register them as generator tasks
 supportedApis.forEach { api ->
-    tasks.create(api.taskName, GenerateOpenApiTask::class) {
+    tasks.register<GenerateOpenApiTask>(api.taskName) {
         group = "openapi tools"
         description = "Generate the code for ${api.name}"
 

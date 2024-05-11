@@ -6,7 +6,7 @@ ENV APP_BASE="/home" \
 
 EXPOSE ${SERVER_PORT}
 
-RUN apk update && apk upgrade && apk add curl openssl gcompat bash busybox-extras iputils
+RUN apk update && apk upgrade && apk add --no-cache curl openssl gcompat bash busybox-extras iputils
 
 RUN mkdir -p ${APP_BASE}/${APP_NAME}
 
@@ -16,5 +16,4 @@ COPY ${APP_NAME}/build/libs/${APP_NAME}*.jar ${APP_BASE}/${APP_NAME}.jar
 # https://stackoverflow.com/questions/72562483/is-it-safe-to-run-openjdk-images-like-eclipse-temurin-as-root
 USER 65534
 
-CMD java $JAVA_OPTS \
-    -jar ${APP_BASE}/${APP_NAME}.jar
+CMD java -jar ${APP_BASE}/${APP_NAME}.jar

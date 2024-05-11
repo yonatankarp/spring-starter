@@ -112,6 +112,7 @@ val supportedApis = listOf(
             "useTags" to "true",
             "documentationProvider" to "none",
             "useSpringBoot3" to "true",
+            "reactive" to "true",
         ),
     ),
 )

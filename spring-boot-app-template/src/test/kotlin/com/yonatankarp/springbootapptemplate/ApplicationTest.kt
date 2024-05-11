@@ -1,5 +1,6 @@
 package com.yonatankarp.springbootapptemplate
 
+import com.yonatankarp.springbootapptemplate.adapters.AbstractIntegrationTest
 import org.jooq.DSLContext
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test

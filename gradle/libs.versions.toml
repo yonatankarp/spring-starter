@@ -9,7 +9,7 @@ mockkSpring = "4.0.2"
 postgres = "42.7.3"
 spotless = "6.25.0"
 springDependencyManagement = "1.1.5"
-springboot = "3.2.5"
+springboot = "3.3.0"
 springdoc = "2.5.0"
 swagger = "7.6.0"
 testcontainers = "1.19.8"
@@ -34,7 +34,7 @@ springboot_web_starter = { module = "org.springframework.boot:spring-boot-starte
 springdoc_openapi_starter = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
 
 # Persistence
-flyway_core = { module = "org.flywaydb:flyway-core" }
+flyway_postgres = { module = "org.flywaydb:flyway-database-postgresql" }
 hikaricp_core = { module = "com.zaxxer:HikariCP" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }
 
@@ -42,7 +42,7 @@ postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }
 mockk_core = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk_spring = { module = "com.ninja-squad:springmockk", version.ref = "mockkSpring" }
 testcontainers_bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
-testcontainers_jupiter = { module = "org.testcontainers:junit-jupiter"}
+testcontainers_jupiter = { module = "org.testcontainers:junit-jupiter" }
 testcontainers_postgres = { module = "org.testcontainers:postgresql" }
 
 [plugins]
@@ -74,7 +74,7 @@ springboot_all = [
 ]
 
 persistence_support_all = [
-    "flyway_core",
+    "flyway_postgres",
     "hikaricp_core",
 ]
 

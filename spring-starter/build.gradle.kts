@@ -35,7 +35,9 @@ dependencies {
 
     // Tests
     testImplementation(platform(libs.testcontainers.bom))
-    testImplementation(libs.bundles.test.all)
+    testImplementation(libs.bundles.test.all) {
+        exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+    }
 }
 
 tasks {

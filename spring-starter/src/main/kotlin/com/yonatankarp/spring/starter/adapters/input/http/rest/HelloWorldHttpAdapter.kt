@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RestController
  * Default endpoints per application.
  */
 @RestController
-class HelloWorldHttpAdapter(private val helloWorldPort: HelloWorldPort) :
-    DemoApiV1Api<Any> {
+class HelloWorldHttpAdapter(
+    private val helloWorldPort: HelloWorldPort,
+) : DemoApiV1Api<Any> {
     override suspend fun helloWorld(): ResponseEntity<Any> =
         helloWorldPort.greet().let {
             ResponseEntity.ok(DemoResponse(it))

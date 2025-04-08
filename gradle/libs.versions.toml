@@ -1,6 +1,6 @@
 [versions]
 
-coroutines = "1.10.1"
+coroutines = "1.10.2"
 jooqDockerPlugin = "0.3.12"
 jvmTarget = "21"
 kotlin = "2.1.20"

@@ -1,12 +1,12 @@
 [versions]
 
 coroutines = "1.10.2"
-jooqDockerPlugin = "0.3.12"
+jooqDockerPlugin = "7.0.19"
 jvmTarget = "21"
 kotlin = "2.2.0"
 mockk = "1.14.5"
 mockkSpring = "4.0.2"
-postgres = "42.7.4"
+postgres = "42.7.7"
 spotless = "7.2.1"
 springDependencyManagement = "1.1.7"
 springboot = "3.5.4"
@@ -47,7 +47,7 @@ testcontainers_postgres = { module = "org.testcontainers:postgresql" }
 
 [plugins]
 
-jooq = { id = "com.revolut.jooq-docker", version.ref = "jooqDockerPlugin" }
+jooq = { id = "dev.monosoul.jooq-docker", version.ref = "jooqDockerPlugin" }
 kotlin_jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin_spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 openapi_generator = { id = "org.openapi.generator", version.ref = "swagger" }

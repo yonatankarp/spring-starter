@@ -1,3 +1,4 @@
+import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask as GenerateOpenApiTask
 
 plugins {
@@ -18,6 +19,12 @@ kotlin {
     }
 }
 
+// Read the jOOQ version that Spring Boot manages, this is a workaround until Spring updates their JOOQ version to 3.20.x
+val bootManagedJooq: String by lazy {
+    (extensions.getByName("dependencyManagement") as DependencyManagementExtension)
+        .importedProperties["jooq.version"] as String
+}
+
 dependencies {
     // Spring Boot
     implementation(libs.bundles.springboot.all)
@@ -26,8 +33,9 @@ dependencies {
     implementation(libs.bundles.kotlin.all)
 
     // Persistence
+    jooqCodegen("org.jooq:jooq-codegen:$bootManagedJooq")
     runtimeOnly(libs.postgresql)
-    jdbc(libs.postgresql) // Required to generate JOOQ models
+    jooqCodegen(libs.postgresql) // Required to generate JOOQ models
     implementation(libs.bundles.persistence.support.all)
 
     // Documentation

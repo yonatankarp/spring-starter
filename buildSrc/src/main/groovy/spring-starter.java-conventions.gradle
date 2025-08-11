@@ -24,6 +24,6 @@ tasks.jar {
                 .collect { it.isDirectory() ? it : zipTree(it) }
     }
     exclude("META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA", "META-INF/LICENSE.txt")
-    includeEmptyDirs(false)
-    duplicatesStrategy(INCLUDE)
+    includeEmptyDirs = false
+    duplicatesStrategy = INCLUDE
 }

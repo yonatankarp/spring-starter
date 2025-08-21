@@ -1,7 +1,7 @@
 [versions]
 
 coroutines = "1.10.2"
-jooqDockerPlugin = "7.0.20"
+jooqDockerPlugin = "7.0.21"
 jvmTarget = "21"
 kotlin = "2.2.10"
 mockk = "1.14.5"

@@ -20,7 +20,7 @@ jobs:
 
   dependabot_auto_merge:
     needs: pipeline
-    if: ${{ github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]' }}
+    if: ${{ github.actor == 'dependabot[bot]' }}
     uses: yonatankarp/github-actions/.github/workflows/dependabot-auto-merge.yml@v1
     secrets:
       GITHUB_PAT: ${{ secrets.REVIEWER_GITHUB_TOKEN }}

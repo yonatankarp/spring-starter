@@ -57,8 +57,14 @@ The template is a working application with a minimal setup. It contains:
 
 ## Setup
 
-Located in `./bin/init.sh`. Simply run and follow the explanation how to
-execute it. This script will self-destroy itself when finished.
+Located in `./bin/init.sh`. Simply run and follow the explanation on how to
+execute it. This script will self-destruct when finished.
+
+### Enable All CI Pipelines
+
+- To enable all CI pipelines, set `REVIEWER_GITHUB_TOKEN` in the repository secrets both for `Action` and `Dependabot`
+- Create a new `Ruleset` for the `main` branch and for depednabot (example: [link](https://github.com/yonatankarp/spring-starter/settings/rules))
+- Enable Auto-merge on the repository for automatic merge of dependabot pull requests
 
 ## Getting Started
 

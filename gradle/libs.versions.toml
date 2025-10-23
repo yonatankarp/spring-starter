@@ -3,7 +3,7 @@
 coroutines = "1.10.2"
 jooqDockerPlugin = "8.0.0"
 jvmTarget = "21"
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 mockk = "1.14.6"
 mockkSpring = "4.0.2"
 postgres = "42.7.8"

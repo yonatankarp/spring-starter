@@ -62,7 +62,7 @@ import kotlin.collections.Map
 @RequestMapping("\${api.base-path:<%contextPath%>}")
 <%={{ }}=%>
 {{#operations}}
-    interface {{classname}} <T> {
+    interface {{classname}} <T : Any> {
         {{#isDelegate}}
 
             fun getDelegate(): {{classname}}Delegate = object: {{classname}}Delegate {}

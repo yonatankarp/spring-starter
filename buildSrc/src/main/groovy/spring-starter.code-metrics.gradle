@@ -11,7 +11,7 @@ spotless {
                     include("**/*.kt")
                     exclude(
                             "**/.gradle/**",
-                            "**/build/generated/**"
+                            "**/build/**"
                     )
                 }
         )

@@ -13,7 +13,6 @@ management:
           - prometheus
           - loggers
           - health
-          - httptrace
   endpoint:
     health:
       probes.enabled: true

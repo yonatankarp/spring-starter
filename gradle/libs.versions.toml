@@ -10,7 +10,7 @@ postgres = "42.7.8"
 spotless = "8.1.0"
 springDependencyManagement = "1.1.7"
 springboot = "4.0.1"
-springdoc = "3.0.0"
+springdoc = "3.0.1"
 swagger = "7.18.0"
 testcontainers = "2.0.3"
 

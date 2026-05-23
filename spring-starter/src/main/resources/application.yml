@@ -30,16 +30,26 @@ management:
         percentiles.http.server:
           requests: 0.5, 0.9, 0.95, 0.99, 0.999
 
+db:
+  host: ${DB_HOST:localhost}
+  port: ${DB_PORT:5432}
+  schema: ${DB_SCHEMA:spring-starter}
+  username: ${DB_USERNAME:postgres}
+  password: ${DB_PASSWORD:secret}
+  endpoint: "${db.host}:${db.port}/${db.schema}"
+
 spring:
   application:
     name: spring-starter
-  datasource:
-    url: "jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_SCHEMA:spring-starter}"
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:secret}
-    driver-class-name: org.postgresql.Driver
+  r2dbc:
+    url: "r2dbc:postgresql://${db.endpoint}"
+    username: ${db.username}
+    password: ${db.password}
   flyway:
     enabled: true
+    url: "jdbc:postgresql://${db.endpoint}"
+    user: ${db.username}
+    password: ${db.password}
 
 springdoc:
   swagger-ui:

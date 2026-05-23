@@ -26,17 +26,18 @@ kotlinx_coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 
 # Spring Boot
 springboot_actuator_starter = { module = "org.springframework.boot:spring-boot-starter-actuator" }
-springboot_jdbc_starter = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
-springboot_jooq_starter = { module = "org.springframework.boot:spring-boot-starter-jooq" }
+springboot_r2dbc_starter = { module = "org.springframework.boot:spring-boot-starter-data-r2dbc" }
 springboot_test_starter = { module = "org.springframework.boot:spring-boot-starter-test" }
 springboot_validation_starter = { module = "org.springframework.boot:spring-boot-starter-validation" }
 springboot_web_starter = { module = "org.springframework.boot:spring-boot-starter-webflux" }
-springdoc_openapi_starter = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
+springdoc_openapi_starter = { module = "org.springdoc:springdoc-openapi-starter-webflux-ui", version.ref = "springdoc" }
 
 # Persistence
 flyway_postgres = { module = "org.flywaydb:flyway-database-postgresql" }
-hikaricp_core = { module = "com.zaxxer:HikariCP" }
+jooq_core = { module = "org.jooq:jooq" }
+jooq_kotlin_coroutines = { module = "org.jooq:jooq-kotlin-coroutines" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }
+r2dbc_postgresql = { module = "org.postgresql:r2dbc-postgresql" }
 
 # Testing
 mockk_core = { module = "io.mockk:mockk", version.ref = "mockk" }
@@ -67,15 +68,16 @@ kotlin_all = [
 
 springboot_all = [
     "springboot_actuator_starter",
-    "springboot_jdbc_starter",
-    "springboot_jooq_starter",
+    "springboot_r2dbc_starter",
     "springboot_validation_starter",
     "springboot_web_starter",
 ]
 
 persistence_support_all = [
     "flyway_postgres",
-    "hikaricp_core",
+    "jooq_core",
+    "jooq_kotlin_coroutines",
+    "r2dbc_postgresql",
 ]
 
 test_all = [

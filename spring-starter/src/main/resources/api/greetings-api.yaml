@@ -1,8 +1,11 @@
 openapi: 3.0.3
 info:
-  title: Demo API
+  title: Greetings (Example) API
   description: |
-    A dummy hello world API that should be replaced once the service is setup.
+    Placeholder API shipped with the template. Replace with your service's
+    real API spec when bootstrapping a new project. Demonstrates an
+    end-to-end reactive request -> use case -> jOOQ-on-R2DBC -> Postgres
+    roundtrip through the hexagonal layers.
   contact:
     name: Yonatan Karp-Rudin
     url: http://yonatankarp.com
@@ -13,27 +16,28 @@ servers:
     description: The local development environment
 
 tags:
-  - name: DemoApiV1
+  - name: GreetingsV1
 
 paths:
 
-  /hello:
+  /greetings/random:
     get:
-      operationId: hello_world
-      summary: Returns hello world to the user
+      operationId: get_random_greeting
+      summary: Returns a random greeting from the catalog
       description: |
-        This endpoint returning to the client the string "Hello World".
+        Returns one randomly-selected greeting from the seeded catalog.
+        Falls back to the English default if the catalog is empty.
       tags:
-        - DemoApiV1
+        - GreetingsV1
 
       responses:
         "200":
           description: |
-            Successfully returning "Hello World" to the client.
+            A randomly-selected greeting.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DemoResponse"
+                $ref: "#/components/schemas/GreetingResponse"
 
         "500":
           description: Something unexpected happened on the server side.
@@ -46,14 +50,20 @@ components:
 
   schemas:
 
-    DemoResponse:
+    GreetingResponse:
       type: object
       required:
-        - value
+        - language
+        - message
       properties:
-        value:
+        language:
           type: string
-          example: "Hello world"
+          description: BCP-47 language tag (e.g., 'en', 'en-US').
+          example: "en"
+        message:
+          type: string
+          description: The greeting text in the given language.
+          example: "Hello, World!"
 
     Error:
       type: object

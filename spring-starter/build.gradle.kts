@@ -71,9 +71,17 @@ tasks {
     }
 
     generateJooqClasses {
+        basePackageName.set("com.yonatankarp.spring.starter.jooq")
         withContainer {
             image {
                 name = "postgres:18-alpine"
+            }
+        }
+        usingJavaConfig {
+            withName("org.jooq.codegen.KotlinGenerator")
+            generate.apply {
+                withKotlinNotNullRecordAttributes(true)
+                withDeprecated(false)
             }
         }
     }
@@ -112,11 +120,11 @@ data class ApiSpec(
  */
 val supportedApis = listOf(
     ApiSpec(
-        name = "Demo API",
-        taskName = "generateDemoApi",
+        name = "Greetings API",
+        taskName = "generateGreetingsApi",
         directoryPath = apiDirectoryPath,
-        outputDir = "$openApiGenerateOutputDir/demo-api",
-        specFileName = "demo-api.yaml",
+        outputDir = "$openApiGenerateOutputDir/greetings-api",
+        specFileName = "greetings-api.yaml",
         generatorType = "kotlin-spring",
         packageName = "com.yonatankarp.spring.starter.openapi.v1",
         modelPackageName = "com.yonatankarp.spring.starter.openapi.v1.models",

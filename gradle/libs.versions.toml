@@ -4,6 +4,7 @@ coroutines = "1.11.0"
 jooqDockerPlugin = "8.0.22"
 jvmTarget = "21"
 kotlin = "2.3.21"
+kotlinLogging = "8.0.03"
 mockk = "1.14.9"
 mockkSpring = "5.0.1"
 postgres = "42.7.11"
@@ -19,6 +20,7 @@ testcontainers = "2.0.5"
 # Kotlin & Coroutines
 kotlin_core = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
 kotlin_jackson_module = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+kotlin_logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }
 kotlin_reflection = { module = "org.jetbrains.kotlin:kotlin-reflect" }
 kotlinx_coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx_coroutines_reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "coroutines" }
@@ -61,6 +63,7 @@ springboot_dependency_management = { id = "io.spring.dependency-management", ver
 kotlin_all = [
     "kotlin_core",
     "kotlin_jackson_module",
+    "kotlin_logging",
     "kotlin_reflection",
     "kotlinx_coroutines_core",
     "kotlinx_coroutines_reactor",

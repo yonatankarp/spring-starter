@@ -4,7 +4,7 @@ services:
     container_name: spring-starter-postgres
     networks:
       - proxynet
-    image: postgres:14
+    image: postgres:18-alpine
     restart: always
     environment:
       POSTGRES_USER: "postgres"

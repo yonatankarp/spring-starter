@@ -69,6 +69,14 @@ tasks {
             html.required.set(true)
         }
     }
+
+    generateJooqClasses {
+        withContainer {
+            image {
+                name = "postgres:18-alpine"
+            }
+        }
+    }
 }
 
 val tasksDependencies = mapOf(

@@ -8,15 +8,17 @@ import org.testcontainers.postgresql.PostgreSQLContainer
 abstract class AbstractIntegrationTest {
     companion object {
         @Container
-        private val postgreSQLContainer = PostgreSQLContainer("postgres:latest")
+        private val postgreSQLContainer = PostgreSQLContainer("postgres:18-alpine")
 
         @DynamicPropertySource
         @JvmStatic
         @Suppress("unused")
         fun registerDynamicProperties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.datasource.url") { postgreSQLContainer.jdbcUrl }
-            registry.add("spring.datasource.username") { postgreSQLContainer.username }
-            registry.add("spring.datasource.password") { postgreSQLContainer.password }
+            registry.add("db.host") { postgreSQLContainer.host }
+            registry.add("db.port") { postgreSQLContainer.firstMappedPort }
+            registry.add("db.schema") { postgreSQLContainer.databaseName }
+            registry.add("db.username") { postgreSQLContainer.username }
+            registry.add("db.password") { postgreSQLContainer.password }
         }
     }
 }

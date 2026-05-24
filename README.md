@@ -46,7 +46,7 @@ The template is a working application with a minimal setup. It contains:
 - code quality tools already set up
 - integration with GitHub Actions
 - integration with Dependabot
-- integration with SonarCloudA
+- integration with SonarCloud
 - Integration with PostgreSQL, Flyway & Jooq
 - Integration with test containers
 - integration with [CodeQL](https://github.com/yonatankarp/spring-starter/security/code-scanning)
@@ -57,13 +57,13 @@ The template is a working application with a minimal setup. It contains:
 
 ## Setup
 
-Located in `./bin/init.sh`. Simply run and follow the explanation on how to
-execute it. This script will self-destruct when finished.
+Located in `./bin/init.py`. Run it and follow the prompts. The script
+self-destructs when finished. Requires Python 3.
 
 ### Enable All CI Pipelines
 
 - To enable all CI pipelines, set `REVIEWER_GITHUB_TOKEN` in the repository secrets both for `Action` and `Dependabot`
-- Create a new `Ruleset` for the `main` branch and for depednabot (example: [link](https://github.com/yonatankarp/spring-starter/settings/rules))
+- Create a new `Ruleset` for the `main` branch and for dependabot (example: [link](https://github.com/yonatankarp/spring-starter/settings/rules))
 - Enable Auto-merge on the repository for automatic merge of dependabot pull requests
 
 ## Getting Started
@@ -76,7 +76,7 @@ how to deploy the project on a live system.
 
 To run the project you need to install the following:
 
-- JDK 17 or newer
+- JDK 25 or newer
 - Docker
 
 

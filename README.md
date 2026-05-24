@@ -2,8 +2,6 @@
 
 [build-badge]: https://github.com/yonatankarp/spring-starter/actions/workflows/build.yml/badge.svg
 [build-state]: https://github.com/yonatankarp/spring-starter/actions/workflows/build.yml
-[codeql-badge]: https://github.com/yonatankarp/spring-starter/actions/workflows/codeql.yml/badge.svg
-[codeql-state]: https://github.com/yonatankarp/spring-starter/actions/workflows/codeql.yml
 
 [quality-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=alert_status
 [quality-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
@@ -37,7 +35,7 @@
 
 | **Type**     | **Status**                                                                                                                                                                             |
 |--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CI pipelines | [![Build][build-badge]][build-state]  [![CodeQL][codeql-badge]][codeql-state]                                                                                                          |
+| CI pipelines | [![Build][build-badge]][build-state]                                                                                                                                                   |
 | Stack        | [![Spring Boot][spring-boot-badge]][spring-boot-link] [![Kotlin][kotlin-badge]][kotlin-link] [![JDK][jdk-badge]][jdk-link] [![Gradle][gradle-badge]][gradle-link] [![Postgres][postgres-badge]][postgres-link] [![jOOQ][jooq-badge]][jooq-link] [![R2DBC][r2dbc-badge]][r2dbc-link] [![Kotest][kotest-badge]][kotest-link] |
 | Maintenance  | [![Quality Gate Status][quality-badge]][quality-state] [![Maintainability Rating][maintainability-badge]][maintainability-state] [![Technical Debt][tech-debt-badge]][tech-debt-state] |
 | Security     | [![Security Rating][security-badge]][security-state] [![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-state]                                                                |
@@ -69,7 +67,6 @@ The template is a working application with a minimal setup. It contains:
 - integration with SonarCloud
 - Integration with PostgreSQL, Flyway & Jooq
 - Integration with test containers
-- integration with [CodeQL](https://github.com/yonatankarp/spring-starter/security/code-scanning)
 - health check, readiness & liveness probs for k8s integration
 - OpenApi spec code generation & documentation
 - C4 model architecture diagrams

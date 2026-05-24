@@ -6,7 +6,6 @@ import com.yonatankarp.spring.starter.domain.event.GreetingDelivered
 import com.yonatankarp.spring.starter.domain.valueobject.Greeting
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import java.time.Instant
 
 @Service
@@ -14,7 +13,6 @@ class GreetUseCase(
     private val catalog: GreetingCatalog,
     private val events: ApplicationEventPublisher,
 ) : Greet {
-    @Transactional(readOnly = true)
     override suspend fun invoke(): Greeting =
         (catalog.random() ?: DEFAULT_GREETING).also {
             events.publishEvent(GreetingDelivered(it, Instant.now()))

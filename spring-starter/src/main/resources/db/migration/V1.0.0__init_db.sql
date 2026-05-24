@@ -1,7 +1,7 @@
 CREATE TABLE greeting (
     id       SERIAL PRIMARY KEY,
-    language VARCHAR(10) NOT NULL,
-    message  TEXT        NOT NULL,
+    language TEXT NOT NULL,
+    message  TEXT NOT NULL,
     UNIQUE (language, message)
 );
 

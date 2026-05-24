@@ -10,7 +10,6 @@ sections, and self-destructs.
 from __future__ import annotations
 
 import re
-import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -66,8 +65,15 @@ def gather_inputs() -> tuple[str, str, str]:
     port = prompt("Port number for new app", default="8080")
     component_name = prompt("Replace application name with")
     package = prompt(f"Replace `{PLACEHOLDER_PACKAGE}` last segment with")
-    if not component_name or not package:
-        print("Application name and package segment are required.", file=sys.stderr)
+
+    if not port.isdigit() or not (1 <= int(port) <= 65535):
+        print("Port must be a number between 1 and 65535.", file=sys.stderr)
+        sys.exit(1)
+    if not re.fullmatch(r"[a-z0-9-]+", component_name):
+        print("Application name must match [a-z0-9-]+ (lowercase kebab-case).", file=sys.stderr)
+        sys.exit(1)
+    if not re.fullmatch(r"[a-z][a-z0-9_]*", package):
+        print("Package segment must match [a-z][a-z0-9_]* (single Java/Kotlin identifier).", file=sys.stderr)
         sys.exit(1)
     return port, component_name, package
 
@@ -124,7 +130,12 @@ def clean_readme(component_name: str) -> None:
 
 def self_destruct() -> None:
     print("Self-destruct in 3... 2... 1...")
-    shutil.rmtree(REPO_ROOT / "bin")
+    script = Path(__file__).resolve()
+    script.unlink(missing_ok=True)
+    try:
+        script.parent.rmdir()
+    except OSError:
+        pass
 
 
 def main() -> int:

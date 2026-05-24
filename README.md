@@ -18,12 +18,32 @@
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
 [license-link]: https://opensource.org/licenses/MIT
 
+[spring-boot-badge]: https://img.shields.io/badge/Spring%20Boot-4-6DB33F?logo=springboot&logoColor=white
+[spring-boot-link]: https://spring.io/projects/spring-boot
+[kotlin-badge]: https://img.shields.io/badge/Kotlin-2-7F52FF?logo=kotlin&logoColor=white
+[kotlin-link]: https://kotlinlang.org/
+[jdk-badge]: https://img.shields.io/badge/JDK-25-007396?logo=openjdk&logoColor=white
+[jdk-link]: https://openjdk.org/
+[gradle-badge]: https://img.shields.io/badge/Gradle-9-02303A?logo=gradle&logoColor=white
+[gradle-link]: https://gradle.org/
+[postgres-badge]: https://img.shields.io/badge/Postgres-18-336791?logo=postgresql&logoColor=white
+[postgres-link]: https://www.postgresql.org/
+[jooq-badge]: https://img.shields.io/badge/jOOQ-3-FF6F00
+[jooq-link]: https://www.jooq.org/
+[r2dbc-badge]: https://img.shields.io/badge/R2DBC-1-2C7BB6
+[r2dbc-link]: https://r2dbc.io/
+[kotest-badge]: https://img.shields.io/badge/Kotest-6-3DA639
+[kotest-link]: https://kotest.io/
+
 | **Type**     | **Status**                                                                                                                                                                             |
 |--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | CI pipelines | [![Build][build-badge]][build-state]  [![CodeQL][codeql-badge]][codeql-state]                                                                                                          |
+| Stack        | [![Spring Boot][spring-boot-badge]][spring-boot-link] [![Kotlin][kotlin-badge]][kotlin-link] [![JDK][jdk-badge]][jdk-link] [![Gradle][gradle-badge]][gradle-link] [![Postgres][postgres-badge]][postgres-link] [![jOOQ][jooq-badge]][jooq-link] [![R2DBC][r2dbc-badge]][r2dbc-link] [![Kotest][kotest-badge]][kotest-link] |
 | Maintenance  | [![Quality Gate Status][quality-badge]][quality-state] [![Maintainability Rating][maintainability-badge]][maintainability-state] [![Technical Debt][tech-debt-badge]][tech-debt-state] |
 | Security     | [![Security Rating][security-badge]][security-state] [![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-state]                                                                |
 | License      | [![License: MIT][license-badge]][license-link]                                                                                                                                         |
+
+Pinned versions live in [`gradle/libs.versions.toml`](./gradle/libs.versions.toml) — badges show the major-version line.
 
 
 
@@ -128,17 +148,19 @@ directory) by executing the following command:
 This will start the API container exposing the application's port
 (set to `8080` in this app).
 
-In order to test if the application is up, you can call its health endpoint:
+### Smoke test
+
+Once the service is up:
 
 ```shell
-  curl http://localhost:8080/health
+curl http://localhost:8080/greetings/random   # {"language":"en","message":"Hello, World!"}
+curl http://localhost:9001/actuator/health    # {"status":"UP"}
+curl http://localhost:9001/actuator/prometheus | head -30
 ```
 
-You should get a response similar to this:
-
-```json
-  {"status":"UP","diskSpace":{"status":"UP","total":249644974080,"free":137188298752,"threshold":10485760}}
-```
+Application HTTP runs on port `8080`, management endpoints (health, metrics,
+Prometheus) on port `9001` — they're intentionally split so the management
+port can sit on an internal/ops network in production.
 
 ### API Documentation
 
@@ -196,14 +218,19 @@ You can also run Spotless manually:
 To read more about the plugins included in this project click
 [here](docs/plugins.md).
 
-## Built With
+## Built with
 
-- [OpenJdk 17](https://openjdk.java.net/projects/jdk/17/)
 - [Kotlin](https://kotlinlang.org/)
-- [SpringBoot](https://spring.io/projects/spring-boot) - The web framework used
-- [Gradle](https://gradle.org/) - Dependency Management
-- [GitHub Actions](https://docs.github.com/en/actions) - Continuous Integration
-- [Docker](https://www.docker.com/) - Container handling
+- [Spring Boot](https://spring.io/projects/spring-boot) (WebFlux + reactive)
+- [jOOQ](https://www.jooq.org/) — type-safe SQL DSL
+- [R2DBC](https://r2dbc.io/) — reactive DB driver
+- [Flyway](https://flywaydb.org/) — JDBC-based schema migrations at startup
+- [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html) + [Micrometer](https://micrometer.io/) — health, metrics, Prometheus exposition
+- [Kotest](https://kotest.io/) (assertions) + [MockK](https://mockk.io/) + [JUnit 5](https://junit.org/junit5/) — testing
+- [Testcontainers](https://testcontainers.com/) — integration tests against real Postgres
+- [Gradle](https://gradle.org/)
+- [Docker](https://www.docker.com/)
+- [GitHub Actions](https://docs.github.com/en/actions)
 
 ## Versioning
 

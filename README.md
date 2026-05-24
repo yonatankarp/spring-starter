@@ -1,18 +1,18 @@
-# spring-starter
+# kotlin-spring-boot-template
 
-[build-badge]: https://github.com/yonatankarp/spring-starter/actions/workflows/build.yml/badge.svg
-[build-state]: https://github.com/yonatankarp/spring-starter/actions/workflows/build.yml
+[build-badge]: https://github.com/yonatankarp/kotlin-spring-boot-template/actions/workflows/build.yml/badge.svg
+[build-state]: https://github.com/yonatankarp/kotlin-spring-boot-template/actions/workflows/build.yml
 
-[quality-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=alert_status
-[quality-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
-[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=sqale_rating
-[maintainability-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
-[tech-debt-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=sqale_index
-[tech-debt-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
-[security-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=security_rating
-[security-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
-[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=vulnerabilities
-[vulnerabilities-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
+[quality-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_kotlin-spring-boot-template&metric=alert_status
+[quality-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_kotlin-spring-boot-template
+[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_kotlin-spring-boot-template&metric=sqale_rating
+[maintainability-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_kotlin-spring-boot-template
+[tech-debt-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_kotlin-spring-boot-template&metric=sqale_index
+[tech-debt-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_kotlin-spring-boot-template
+[security-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_kotlin-spring-boot-template&metric=security_rating
+[security-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_kotlin-spring-boot-template
+[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_kotlin-spring-boot-template&metric=vulnerabilities
+[vulnerabilities-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_kotlin-spring-boot-template
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
 [license-link]: https://opensource.org/licenses/MIT
 
@@ -80,7 +80,7 @@ self-destructs when finished. Requires Python 3.
 ### Enable All CI Pipelines
 
 - To enable all CI pipelines, set `REVIEWER_GITHUB_TOKEN` in the repository secrets both for `Action` and `Dependabot`
-- Create a new `Ruleset` for the `main` branch and for dependabot (example: [branch rules settings](https://github.com/yonatankarp/spring-starter/settings/rules))
+- Create a new `Ruleset` for the `main` branch and for dependabot (example: [branch rules settings](https://github.com/yonatankarp/kotlin-spring-boot-template/settings/rules))
 - Enable Auto-merge on the repository for automatic merge of dependabot pull requests
 
 ## Getting Started
@@ -135,7 +135,7 @@ For Apple M1 processor run the following instead:
 DOCKER_BUILDKIT=0 docker compose build
 ```
 
-Run the distribution (created in `spring-starter/build/install/spring-starter`
+Run the distribution (created in `kotlin-spring-boot-template/build/install/kotlin-spring-boot-template`
 directory) by executing the following command:
 
 ```shell

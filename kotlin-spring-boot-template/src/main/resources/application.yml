@@ -1,0 +1,50 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+management:
+  server:
+    port: ${MANAGEMENT_PORT:9001}
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - metrics
+          - prometheus
+  endpoint:
+    health:
+      probes.enabled: true
+      show-details: when-authorized
+      livenessState.enabled: true
+      readinessState.enabled: true
+    metrics.enabled: true
+    prometheus.enabled: true
+    metrics:
+      export.prometheus.enabled: true
+      distribution:
+        percentiles-histogram.http.server:
+          requests: true
+        sla.http.server.requests: 50ms, 100ms, 200ms, 400ms
+        percentiles.http.server:
+          requests: 0.5, 0.9, 0.95, 0.99, 0.999
+
+db:
+  type: ${DB_TYPE:postgresql}
+  host: ${DB_HOST:localhost}
+  port: ${DB_PORT:5432}
+  schema: ${DB_SCHEMA:kotlin-spring-boot-template}
+  username: ${DB_USERNAME:postgres}
+  password: ${DB_PASSWORD:secret}
+
+spring:
+  application:
+    name: kotlin-spring-boot-template
+  r2dbc:
+    url: "r2dbc:${db.type}://${db.host}:${db.port}/${db.schema}"
+    username: ${db.username}
+    password: ${db.password}
+
+springdoc:
+  swagger-ui:
+    path: /api-docs
+    operations-sorter: method

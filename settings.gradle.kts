@@ -1,4 +1,4 @@
-rootProject.name = "spring-starter"
+rootProject.name = "kotlin-spring-boot-template"
 include(
-    "spring-starter"
+    "kotlin-spring-boot-template"
 )

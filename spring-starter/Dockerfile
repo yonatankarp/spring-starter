@@ -2,9 +2,10 @@ FROM eclipse-temurin:21-jre-alpine
 
 ENV APP_BASE="/home" \
     APP_NAME="spring-starter" \
-    SERVER_PORT="8080"
+    SERVER_PORT="8080" \
+    MANAGEMENT_PORT="9001"
 
-EXPOSE ${SERVER_PORT}
+EXPOSE ${SERVER_PORT} ${MANAGEMENT_PORT}
 
 RUN apk update && apk upgrade && apk add --no-cache curl openssl gcompat bash busybox-extras iputils
 

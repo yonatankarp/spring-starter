@@ -172,21 +172,25 @@ You can run the project tests via Gradle by executing the following command:
 
 ### And coding style tests
 
-This project uses [Spotless Gradle plugin](https://github.com/diffplug/spotless)
-to enforce its code style. The plugin will run automatically after every
-successful build, test, and assemble stage. However, if you would like to run
-it manually you can do so by running the following commands:
+This project uses the [Spotless Gradle plugin](https://github.com/diffplug/spotless)
+to enforce its code style. CI runs `spotlessCheck` and fails if any file is
+not canonically formatted.
 
-To apply the code style to the project run:
+For local development, install the project's pre-commit hook once after
+cloning so Spotless runs automatically on staged Kotlin files:
 
 ```shell
-./gradlew spotlessApply
+./gradlew installGitHooks
 ```
 
-To check your code without applying any changes you can execute:
+This configures `git config core.hooksPath bin/hooks` for this repository.
+Hooks in `bin/hooks/` (currently just `pre-commit`) become active.
+
+You can also run Spotless manually:
 
 ```shell
-./gradlew spotlessCheck
+./gradlew spotlessApply    # rewrite files to the canonical format
+./gradlew spotlessCheck    # report violations without changing files
 ```
 
 ## Plugins

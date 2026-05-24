@@ -1,6 +1,6 @@
 plugins {
     id("jacoco")
-    id("spring-starter.code-metrics")
+    id("spring-starter.spotless")
     id("spring-starter.java-conventions")
     id("spring-starter.publishing-conventions")
     alias(libs.plugins.spotless) apply true
@@ -25,4 +25,10 @@ subprojects {
             }
         }
     }
+}
+
+tasks.register<Exec>("installGitHooks") {
+    group = "git hooks"
+    description = "Configure git to use bin/hooks/ as the hooks directory."
+    commandLine("git", "config", "core.hooksPath", "bin/hooks")
 }

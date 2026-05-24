@@ -3,7 +3,7 @@ import org.openapitools.generator.gradle.plugin.tasks.GenerateTask as GenerateOp
 
 plugins {
     jacoco
-    id("spring-starter.code-metrics")
+    id("spring-starter.spotless")
     alias(libs.plugins.jooq)
     alias(libs.plugins.springboot.dependency.management)
     alias(libs.plugins.openapi.generator)
@@ -54,13 +54,8 @@ tasks {
         enabled = false
     }
 
-    build {
-        finalizedBy(spotlessApply)
-    }
-
     test {
         useJUnitPlatform()
-        finalizedBy(spotlessApply)
         finalizedBy(jacocoTestReport)
     }
 
@@ -86,14 +81,6 @@ tasks {
             }
         }
     }
-}
-
-val tasksDependencies = mapOf(
-    "spotlessKotlin" to listOf("compileKotlin", "compileTestKotlin", "test", "jacocoTestReport")
-)
-
-tasksDependencies.forEach { (taskName, dependencies) ->
-    tasks.findByName(taskName)?.dependsOn(dependencies)
 }
 
 /********************************************/

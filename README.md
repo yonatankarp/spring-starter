@@ -67,7 +67,7 @@ The template is a working application with a minimal setup. It contains:
 - integration with SonarCloud
 - Integration with PostgreSQL, Flyway & Jooq
 - Integration with test containers
-- health check, readiness & liveness probs for k8s integration
+- health check, readiness & liveness probes for k8s integration
 - OpenApi spec code generation & documentation
 - C4 model architecture diagrams
 - MIT license and contribution information
@@ -80,7 +80,7 @@ self-destructs when finished. Requires Python 3.
 ### Enable All CI Pipelines
 
 - To enable all CI pipelines, set `REVIEWER_GITHUB_TOKEN` in the repository secrets both for `Action` and `Dependabot`
-- Create a new `Ruleset` for the `main` branch and for dependabot (example: [link](https://github.com/yonatankarp/spring-starter/settings/rules))
+- Create a new `Ruleset` for the `main` branch and for dependabot (example: [branch rules settings](https://github.com/yonatankarp/spring-starter/settings/rules))
 - Enable Auto-merge on the repository for automatic merge of dependabot pull requests
 
 ## Getting Started
@@ -166,20 +166,6 @@ at the following URL: `http://localhost:8080/api-docs`.
 
 You can use this page as a playground to test the API, and the interactions with
 the service.
-
-### Alternative script to run application
-
-To skip all the setting up and building, just execute the following command:
-
-```shell
-./bin/run-in-docker.sh
-```
-
-For more information:
-
-```shell
-./bin/run-in-docker.sh --help
-```
 
 ## Running the tests
 

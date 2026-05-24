@@ -31,24 +31,19 @@ management:
           requests: 0.5, 0.9, 0.95, 0.99, 0.999
 
 db:
+  type: ${DB_TYPE:postgresql}
   host: ${DB_HOST:localhost}
   port: ${DB_PORT:5432}
   schema: ${DB_SCHEMA:spring-starter}
   username: ${DB_USERNAME:postgres}
   password: ${DB_PASSWORD:secret}
-  endpoint: "${db.host}:${db.port}/${db.schema}"
 
 spring:
   application:
     name: spring-starter
   r2dbc:
-    url: "r2dbc:postgresql://${db.endpoint}"
+    url: "r2dbc:${db.type}://${db.host}:${db.port}/${db.schema}"
     username: ${db.username}
-    password: ${db.password}
-  flyway:
-    enabled: true
-    url: "jdbc:postgresql://${db.endpoint}"
-    user: ${db.username}
     password: ${db.password}
 
 springdoc:

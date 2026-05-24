@@ -112,7 +112,8 @@ def rename_module_directory(component_name: str) -> None:
 
 def rename_buildsrc_files(component_name: str) -> None:
     for old in REPO_ROOT.rglob(f"{PLACEHOLDER_SLUG}*"):
-        if "buildSrc/build" in str(old) or ".gradle" in str(old):
+        path = old.as_posix()
+        if "buildSrc/build" in path or "/.gradle/" in path:
             continue
         new = old.parent / old.name.replace(PLACEHOLDER_SLUG, component_name)
         if old != new:

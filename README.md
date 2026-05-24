@@ -3,16 +3,16 @@
 [build-badge]: https://github.com/yonatankarp/kotlin-spring-boot-template/actions/workflows/build.yml/badge.svg
 [build-state]: https://github.com/yonatankarp/kotlin-spring-boot-template/actions/workflows/build.yml
 
-[quality-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_kotlin-spring-boot-template&metric=alert_status
-[quality-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_kotlin-spring-boot-template
-[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_kotlin-spring-boot-template&metric=sqale_rating
-[maintainability-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_kotlin-spring-boot-template
-[tech-debt-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_kotlin-spring-boot-template&metric=sqale_index
-[tech-debt-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_kotlin-spring-boot-template
-[security-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_kotlin-spring-boot-template&metric=security_rating
-[security-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_kotlin-spring-boot-template
-[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_kotlin-spring-boot-template&metric=vulnerabilities
-[vulnerabilities-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_kotlin-spring-boot-template
+[quality-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=alert_status
+[quality-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
+[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=sqale_rating
+[maintainability-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
+[tech-debt-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=sqale_index
+[tech-debt-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
+[security-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=security_rating
+[security-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
+[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=yonatankarp_spring-starter&metric=vulnerabilities
+[vulnerabilities-state]: https://sonarcloud.io/summary/new_code?id=yonatankarp_spring-starter
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
 [license-link]: https://opensource.org/licenses/MIT
 

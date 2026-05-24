@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        service: [ spring-starter ]
+        service: [ kotlin-spring-boot-template ]
     uses: yonatankarp/github-actions/.github/workflows/ci.yml@v1
     with:
       app_name: ${{ matrix.service }}

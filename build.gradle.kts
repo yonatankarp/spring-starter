@@ -1,7 +1,7 @@
 plugins {
     id("jacoco")
-    id("spring-starter.spotless")
-    id("spring-starter.java-conventions")
+    id("kotlin-spring-boot-template.spotless")
+    id("kotlin-spring-boot-template.java-conventions")
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.spring) apply false
     alias(libs.plugins.springboot.dependency.management) apply false
@@ -15,7 +15,7 @@ subprojects {
         mavenCentral()
         maven { url = uri("https://packages.confluent.io/maven/") }
         maven {
-            url = uri("https://maven.pkg.github.com/yonatankarp/spring-starter")
+            url = uri("https://maven.pkg.github.com/yonatankarp/kotlin-spring-boot-template")
             credentials {
                 username = findProperty("gpr.user")?.toString() ?: System.getenv("GITHUB_ACTOR")
                 password = findProperty("gpr.key")?.toString() ?: System.getenv("GITHUB_TOKEN")

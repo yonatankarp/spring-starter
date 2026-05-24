@@ -1,3 +1,12 @@
+FROM eclipse-temurin:25-jdk-alpine AS extractor
+
+ENV APP_NAME="spring-starter"
+WORKDIR /workspace
+
+COPY ${APP_NAME}/build/libs/${APP_NAME}*.jar application.jar
+RUN java -Djarmode=tools -jar application.jar extract --layers --destination extracted
+
+
 FROM eclipse-temurin:25-jre-alpine
 
 ENV APP_BASE="/home" \
@@ -9,12 +18,13 @@ EXPOSE ${SERVER_PORT} ${MANAGEMENT_PORT}
 
 RUN apk update && apk upgrade && apk add --no-cache curl openssl gcompat bash busybox-extras iputils
 
-RUN mkdir -p ${APP_BASE}/${APP_NAME}
+WORKDIR ${APP_BASE}/${APP_NAME}
 
-COPY ${APP_NAME}/build/libs/${APP_NAME}*.jar ${APP_BASE}/${APP_NAME}.jar
+COPY --from=extractor /workspace/extracted/dependencies/ ./
+COPY --from=extractor /workspace/extracted/spring-boot-loader/ ./
+COPY --from=extractor /workspace/extracted/snapshot-dependencies/ ./
+COPY --from=extractor /workspace/extracted/application/ ./
 
-# Running the image as 'nobody' user
-# https://stackoverflow.com/questions/72562483/is-it-safe-to-run-openjdk-images-like-eclipse-temurin-as-root
 USER 65534
 
-CMD java -jar ${APP_BASE}/${APP_NAME}.jar
+ENTRYPOINT ["java", "-jar", "application.jar"]

@@ -4,6 +4,7 @@ import org.openapitools.generator.gradle.plugin.tasks.GenerateTask as GenerateOp
 plugins {
     jacoco
     id("spring-starter.spotless")
+    id("spring-starter.publishing-conventions")
     alias(libs.plugins.jooq)
     alias(libs.plugins.springboot.dependency.management)
     alias(libs.plugins.openapi.generator)

@@ -2,8 +2,6 @@ plugins {
     id("jacoco")
     id("spring-starter.spotless")
     id("spring-starter.java-conventions")
-    id("spring-starter.publishing-conventions")
-    alias(libs.plugins.spotless) apply true
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.spring) apply false
     alias(libs.plugins.springboot.dependency.management) apply false
@@ -14,7 +12,6 @@ plugins {
 
 subprojects {
     repositories {
-        mavenLocal()
         mavenCentral()
         maven { url = uri("https://packages.confluent.io/maven/") }
         maven {

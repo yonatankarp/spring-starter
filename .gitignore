@@ -2,6 +2,9 @@
 **/build/**
 !gradle/wrapper/gradle-wrapper.jar
 
+### JVM ###
+*.hprof
+
 ### STS ###
 .apt_generated
 .classpath

@@ -176,15 +176,13 @@ This project uses the [Spotless Gradle plugin](https://github.com/diffplug/spotl
 to enforce its code style. CI runs `spotlessCheck` and fails if any file is
 not canonically formatted.
 
-For local development, install the project's pre-commit hook once after
-cloning so Spotless runs automatically on staged Kotlin files:
+The project's git hooks (currently `bin/hooks/pre-commit`, which runs
+`spotlessApply` on staged Kotlin files) are installed automatically the
+first time you run `./gradlew build` — it sets `git config core.hooksPath
+bin/hooks` for the repository.
 
-```shell
-./gradlew installGitHooks
-```
-
-This configures `git config core.hooksPath bin/hooks` for this repository.
-Hooks in `bin/hooks/` (currently just `pre-commit`) become active.
+Skip the auto-install with `./gradlew build -PskipGitHooks=true` (or set
+`CI=true` in the environment, which is detected automatically).
 
 You can also run Spotless manually:
 

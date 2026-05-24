@@ -30,5 +30,15 @@ subprojects {
 tasks.register<Exec>("installGitHooks") {
     group = "git hooks"
     description = "Configure git to use bin/hooks/ as the hooks directory."
+
+    onlyIf {
+        val skip = providers.gradleProperty("skipGitHooks").orNull == "true"
+        val ci = System.getenv("CI") != null || System.getenv("GITHUB_ACTIONS") != null
+        !skip && !ci
+    }
     commandLine("git", "config", "core.hooksPath", "bin/hooks")
+}
+
+tasks.named("build") {
+    dependsOn("installGitHooks")
 }

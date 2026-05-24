@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# Runs Spotless to format staged Kotlin files before each commit.
+# If Spotless modifies anything, the formatted files are re-staged
+# automatically so the commit captures the canonical formatting.
+#
+# Enable this hook directory once after cloning:
+#   git config core.hooksPath bin/hooks
+# Or run the Gradle task:
+#   ./gradlew installGitHooks
+
+set -euo pipefail
+
+STAGED_KOTLIN=$(git diff --cached --name-only --diff-filter=ACM -- '*.kt' '*.kts')
+
+if [ -z "$STAGED_KOTLIN" ]; then
+    exit 0
+fi
+
+./gradlew --quiet spotlessApply
+
+echo "$STAGED_KOTLIN" | xargs git add

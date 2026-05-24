@@ -8,15 +8,15 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class GreetingTest {
-    @ParameterizedTest(name = "accepts language code: {0}")
-    @ValueSource(strings = ["en", "fr", "ja", "pt-BR", "en-US", "zh-CN"])
-    fun `accepts valid BCP-47 language codes`(language: String) {
+    @ParameterizedTest(name = "accepts BCP-47 tag: {0}")
+    @ValueSource(strings = ["en", "fr", "ja", "pt-BR", "en-US", "zh-CN", "eng", "zh-Hant", "de-CH-1996"])
+    fun `accepts valid BCP-47 language tags`(language: String) {
         Greeting(language = language, message = "Hello").language shouldBe language
     }
 
-    @ParameterizedTest(name = "rejects invalid language code: '{0}'")
-    @ValueSource(strings = ["EN", "english", "e", "eng", "en_US", "en-us", "EN-US", "", "  "])
-    fun `rejects invalid language codes`(language: String) {
+    @ParameterizedTest(name = "rejects malformed language tag: '{0}'")
+    @ValueSource(strings = ["en_US", "1en", "", "  "])
+    fun `rejects malformed language tags`(language: String) {
         shouldThrow<IllegalArgumentException> {
             Greeting(language = language, message = "Hi")
         }

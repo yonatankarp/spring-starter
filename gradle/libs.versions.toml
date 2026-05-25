@@ -26,6 +26,7 @@ kotlinx_coroutines_reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 kotlinx_coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test" }
 
 # Spring Boot
+springboot_bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springboot" }
 springboot_actuator_starter = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 springboot_r2dbc_starter = { module = "org.springframework.boot:spring-boot-starter-data-r2dbc" }
 springboot_test_starter = { module = "org.springframework.boot:spring-boot-starter-test" }
@@ -42,6 +43,9 @@ postgresql = { module = "org.postgresql:postgresql" }
 r2dbc_postgresql = { module = "org.postgresql:r2dbc-postgresql" }
 
 # Testing
+junit_jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit_jupiter_params = { module = "org.junit.jupiter:junit-jupiter-params" }
+junit_platform_launcher = { module = "org.junit.platform:junit-platform-launcher" }
 kotest_assertions_core = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
 mockk_core = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk_spring = { module = "com.ninja-squad:springmockk", version.ref = "mockkSpring" }
@@ -85,6 +89,9 @@ persistence_support_all = [
 ]
 
 test_unit = [
+    "junit_jupiter",
+    "junit_jupiter_params",
+    "junit_platform_launcher",
     "kotest_assertions_core",
     "kotlinx_coroutines_test",
     "mockk_core",

@@ -17,15 +17,11 @@ jobs:
       contents: read
       pull-requests: write
       checks: write
-    strategy:
-      fail-fast: false
-      matrix:
-        service: [ kotlin-spring-boot-template ]
     uses: yonatankarp/github-actions/.github/workflows/ci.yml@v2
     with:
-      image-name: ${{ matrix.service }}
-      dockerfile-path: ${{ matrix.service }}/Dockerfile
-      gradle-module: ":${{ matrix.service }}"
+      image-name: kotlin-spring-boot-template
+      dockerfile-path: Dockerfile
+      gradle-module: ":kotlin-spring-boot-template-adapters"
 
   dependabot_auto_merge:
     needs: pipeline

@@ -1,12 +1,8 @@
 plugins {
-    id("jacoco")
-    id("kotlin-spring-boot-template.spotless")
-    id("kotlin-spring-boot-template.java-conventions")
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.spring) apply false
     alias(libs.plugins.springboot.dependency.management) apply false
     alias(libs.plugins.springboot) apply false
-    alias(libs.plugins.openapi.generator) apply false
     alias(libs.plugins.jooq) apply false
 }
 
@@ -36,6 +32,9 @@ tasks.register<Exec>("installGitHooks") {
     commandLine("git", "config", "core.hooksPath", "bin/hooks")
 }
 
-tasks.named("build") {
+tasks.register("build") {
+    group = "build"
+    description = "Aggregate build across all modules"
     dependsOn("installGitHooks")
+    subprojects.forEach { dependsOn("${it.path}:build") }
 }

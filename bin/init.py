@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Bootstrap a fresh project from this template.
 
-Replaces template placeholders (`kotlin-spring-boot-template` slug, `karp.kotlin.spring.boot.template`
-package, `8080` port), renames the Gradle subproject and Kotlin source
-directories to match the new package, cleans up template-only README
-sections, and self-destructs.
+Replaces template placeholders (`kotlin-spring-boot-template` slug,
+`karp.kotlin.spring.boot.template` package, `8080` port), renames the
+Gradle subprojects and Kotlin source directories to match the new
+package, cleans up template-only README sections, and self-destructs.
 """
 
 from __future__ import annotations
@@ -19,10 +19,12 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 PLACEHOLDER_SLUG = "kotlin-spring-boot-template"
 PLACEHOLDER_PACKAGE = "karp.kotlin.spring.boot.template"
 
+MODULE_SUFFIXES = ["domain", "application", "adapters"]
+
 PORT_FILES = [
     "README.md",
-    "kotlin-spring-boot-template/Dockerfile",
-    "kotlin-spring-boot-template/src/main/resources/application.yml",
+    "Dockerfile",
+    f"{PLACEHOLDER_SLUG}-adapters/src/main/resources/application.yml",
 ]
 
 SLUG_FILES = [
@@ -30,14 +32,13 @@ SLUG_FILES = [
     "settings.gradle.kts",
     "README.md",
     "docker-compose.yml",
-    "buildSrc/src/main/kotlin/kotlin-spring-boot-template.java-conventions.gradle.kts",
-    "buildSrc/src/main/kotlin/kotlin-spring-boot-template.publishing-conventions.gradle.kts",
-    "buildSrc/src/main/kotlin/kotlin-spring-boot-template.spotless.gradle.kts",
-    "kotlin-spring-boot-template/build.gradle.kts",
-    "kotlin-spring-boot-template/Dockerfile",
-    "kotlin-spring-boot-template/src/main/resources/application.yml",
-    "kotlin-spring-boot-template/src/main/kotlin/com/yonatankarp/kotlin/spring/boot/template/adapters/input/http/rest/GreetingsHttpAdapter.kt",
+    "Dockerfile",
+    f"buildSrc/src/main/kotlin/{PLACEHOLDER_SLUG}.java-conventions.gradle.kts",
+    f"buildSrc/src/main/kotlin/{PLACEHOLDER_SLUG}.publishing-conventions.gradle.kts",
+    f"buildSrc/src/main/kotlin/{PLACEHOLDER_SLUG}.spotless.gradle.kts",
     ".github/workflows/build.yml",
+    *[f"{PLACEHOLDER_SLUG}-{s}/build.gradle.kts" for s in MODULE_SUFFIXES],
+    f"{PLACEHOLDER_SLUG}-adapters/src/main/resources/application.yml",
 ]
 
 README_SECTIONS_TO_DROP = ["Purpose", "What's inside", "Setup"]
@@ -90,24 +91,33 @@ def replace_slug(component_name: str) -> None:
 
 def replace_package(new_package: str) -> None:
     replace_in_file(REPO_ROOT / "build.gradle.kts", PLACEHOLDER_PACKAGE, new_package)
-    replace_in_file(REPO_ROOT / "kotlin-spring-boot-template" / "build.gradle.kts", PLACEHOLDER_PACKAGE, new_package)
-    for source in (REPO_ROOT / "kotlin-spring-boot-template" / "src").rglob("*"):
-        if source.is_file():
-            replace_in_file(source, PLACEHOLDER_PACKAGE, new_package)
+    for suffix in MODULE_SUFFIXES:
+        module = REPO_ROOT / f"{PLACEHOLDER_SLUG}-{suffix}"
+        replace_in_file(module / "build.gradle.kts", PLACEHOLDER_PACKAGE, new_package)
+        src_dir = module / "src"
+        if not src_dir.exists():
+            continue
+        for source in src_dir.rglob("*"):
+            if source.is_file():
+                replace_in_file(source, PLACEHOLDER_PACKAGE, new_package)
 
 
 def rename_kotlin_packages(package: str) -> None:
-    for layer in ("main", "test"):
-        old_pkg = REPO_ROOT / "kotlin-spring-boot-template" / "src" / layer / "kotlin" / "com" / "yonatankarp" / "kotlin" / "spring" / "boot" / "template"
-        new_pkg = REPO_ROOT / "kotlin-spring-boot-template" / "src" / layer / "kotlin" / "com" / "yonatankarp" / package
-        if old_pkg.exists():
-            git_mv(old_pkg, new_pkg)
+    for suffix in MODULE_SUFFIXES:
+        module = REPO_ROOT / f"{PLACEHOLDER_SLUG}-{suffix}"
+        for layer in ("main", "test", "testFixtures"):
+            old_pkg = module / "src" / layer / "kotlin" / "com" / "yonatankarp" / "kotlin" / "spring" / "boot" / "template"
+            new_pkg = module / "src" / layer / "kotlin" / "com" / "yonatankarp" / package
+            if old_pkg.exists():
+                git_mv(old_pkg, new_pkg)
 
 
-def rename_module_directory(component_name: str) -> None:
-    module = REPO_ROOT / "kotlin-spring-boot-template"
-    if module.exists():
-        git_mv(module, REPO_ROOT / component_name)
+def rename_module_directories(component_name: str) -> None:
+    for suffix in MODULE_SUFFIXES:
+        old = REPO_ROOT / f"{PLACEHOLDER_SLUG}-{suffix}"
+        new = REPO_ROOT / f"{component_name}-{suffix}"
+        if old.exists():
+            git_mv(old, new)
 
 
 def rename_buildsrc_files(component_name: str) -> None:
@@ -147,7 +157,7 @@ def main() -> int:
     replace_slug(component_name)
     replace_package(new_package)
     rename_kotlin_packages(package)
-    rename_module_directory(component_name)
+    rename_module_directories(component_name)
     rename_buildsrc_files(component_name)
     clean_readme(component_name)
     self_destruct()
